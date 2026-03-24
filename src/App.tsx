@@ -268,76 +268,74 @@ export default function App() {
   const currentFile = selectedFileIndex !== null ? files[selectedFileIndex] : null;
 
   return (
-    <div className="min-h-screen bg-[#f8fafc] text-slate-900 font-sans">
+    <div className="min-h-screen bg-surface text-on-surface font-sans overflow-x-hidden">
       {/* Header */}
-      <header className="bg-white border-b border-slate-200 sticky top-0 z-50">
-        <div className="max-w-7xl mx-auto px-6 h-16 flex items-center justify-between">
-          <div className="flex items-center gap-3">
-            <div className="w-10 h-10 bg-indigo-600 rounded-xl flex items-center justify-center shadow-lg shadow-indigo-200">
-              <Languages className="text-white w-6 h-6" />
-            </div>
-            <div>
-              <h1 className="text-xl font-bold tracking-tight text-slate-900">AI Subtitle Architect</h1>
-              <p className="text-xs text-slate-500 font-medium uppercase tracking-wider">Professional Translation Engine</p>
-            </div>
-          </div>
-          <div className="flex items-center gap-4">
-            <button 
-              onClick={loadSample}
-              className="text-sm font-medium text-indigo-600 hover:text-indigo-700 flex items-center gap-1.5 px-3 py-1.5 rounded-lg hover:bg-indigo-50 transition-colors"
-            >
-              <Info className="w-4 h-4" />
-              Load Sample
-            </button>
-          </div>
+      <header className="flex justify-between items-center w-full px-8 py-6 sticky top-0 z-50 bg-surface/80 backdrop-blur-md">
+        <div className="flex items-center gap-3">
+          <div className="text-2xl font-bold tracking-tighter text-primary font-headline">Architect Editor</div>
+        </div>
+        <div className="flex items-center gap-4">
+          <button 
+            onClick={loadSample}
+            className="text-xs font-bold font-headline uppercase tracking-widest text-on-surface-variant hover:text-primary transition-colors flex items-center gap-1.5"
+          >
+            <Info className="w-4 h-4" />
+            Load Sample
+          </button>
         </div>
       </header>
 
-      <main className="max-w-7xl mx-auto px-6 py-8 grid grid-cols-1 lg:grid-cols-12 gap-8">
+      <main className="max-w-[1440px] mx-auto px-8 lg:px-16 py-12 grid grid-cols-1 lg:grid-cols-12 gap-12">
         {/* Left Panel: Controls */}
-        <div className="lg:col-span-4 space-y-6">
+        <div className="lg:col-span-4 bg-surface-container-low rounded-xl p-8 flex flex-col gap-8">
+          <div>
+            <span className="text-[0.6875rem] font-bold tracking-[0.2em] uppercase text-primary mb-4 block">The Workflow</span>
+            <h3 className="text-3xl font-headline font-bold text-primary mb-2">Configuration</h3>
+            <p className="text-on-surface-variant text-sm">Upload and configure your translation stack.</p>
+          </div>
+
           {/* Upload Area */}
-          <section className="bg-white rounded-2xl p-6 shadow-sm border border-slate-200">
-            <h2 className="text-sm font-bold uppercase tracking-widest text-slate-400 mb-4 flex items-center gap-2">
-              <Upload className="w-4 h-4" /> 1. Upload Subtitles
+          <section className="bg-surface-container-lowest rounded-xl p-6 shadow-sm">
+            <h2 className="text-[0.6875rem] font-bold tracking-[0.2em] uppercase text-on-surface-variant mb-4 flex items-center gap-2">
+              <Upload className="w-4 h-4" /> 1. Upload
             </h2>
             
             <div 
               {...getRootProps()} 
               className={cn(
                 "border-2 border-dashed rounded-xl p-6 text-center cursor-pointer transition-all mb-4",
-                isDragActive ? "border-indigo-500 bg-indigo-50" : "border-slate-200 hover:border-indigo-400 hover:bg-slate-50"
+                isDragActive ? "border-primary bg-primary/5" : "border-outline-variant/30 hover:border-primary/50 hover:bg-surface-container-low"
               )}
             >
               <input {...getInputProps()} />
-              <Upload className="w-8 h-8 text-slate-300 mx-auto mb-2" />
-              <p className="text-slate-600 font-semibold text-sm">Drag & drop subtitle files</p>
-              <p className="text-slate-400 text-[10px] mt-1">Supports .srt, .vtt, .txt</p>
+              <Upload className="w-8 h-8 text-outline-variant mx-auto mb-2" />
+              <p className="text-primary font-semibold text-sm">Drag & drop subtitle files</p>
+              <p className="text-on-surface-variant text-[10px] mt-1">Supports .srt, .vtt, .txt</p>
             </div>
 
             {files.length > 0 && (
-              <div className="space-y-2 max-h-60 overflow-y-auto pr-1 scrollbar-thin scrollbar-thumb-slate-200">
+              <div className="space-y-2 max-h-60 overflow-y-auto pr-1 scrollbar-thin scrollbar-thumb-surface-container-high">
                 {files.map((f, idx) => (
                   <div 
                     key={f.id} 
                     onClick={() => setSelectedFileIndex(idx)}
                     className={cn(
-                      "flex items-center justify-between p-3 border rounded-xl cursor-pointer transition-all group",
+                      "flex items-center justify-between p-3 rounded-xl cursor-pointer transition-all group",
                       selectedFileIndex === idx 
-                        ? "border-indigo-500 bg-indigo-50 ring-1 ring-indigo-500" 
-                        : "border-slate-100 bg-slate-50 hover:border-slate-200"
+                        ? "bg-primary/5 ring-1 ring-primary/20" 
+                        : "bg-surface-container-low hover:bg-surface-container-high"
                     )}
                   >
                     <div className="flex items-center gap-3 overflow-hidden">
                       <div className={cn(
                         "p-1.5 rounded-lg shrink-0",
-                        f.status === 'completed' ? "bg-emerald-100 text-emerald-600" : "bg-indigo-100 text-indigo-600"
+                        f.status === 'completed' ? "bg-emerald-100 text-emerald-700" : "bg-primary/10 text-primary"
                       )}>
                         {f.status === 'translating' ? <Loader2 className="w-4 h-4 animate-spin" /> : <FileText className="w-4 h-4" />}
                       </div>
                       <div className="overflow-hidden">
-                        <p className={cn("text-xs font-bold truncate", selectedFileIndex === idx ? "text-indigo-900" : "text-slate-800")}>{f.name}</p>
-                        <p className="text-[9px] text-slate-500 font-mono uppercase">
+                        <p className={cn("text-xs font-bold truncate", selectedFileIndex === idx ? "text-primary" : "text-on-surface")}>{f.name}</p>
+                        <p className="text-[9px] text-on-surface-variant font-mono uppercase">
                           {f.status === 'translating' ? `Translating ${f.progress}%` : `${f.ext} • ${f.blocks.length} blocks`}
                         </p>
                       </div>
@@ -347,7 +345,7 @@ export default function App() {
                         e.stopPropagation();
                         handleRemoveFile(f.id);
                       }} 
-                      className="p-1.5 hover:bg-slate-200 rounded-full text-slate-400 opacity-0 group-hover:opacity-100 transition-all"
+                      className="p-1.5 hover:bg-surface-container-highest rounded-full text-on-surface-variant opacity-0 group-hover:opacity-100 transition-all"
                     >
                       <X className="w-3.5 h-3.5" />
                     </button>
@@ -358,28 +356,28 @@ export default function App() {
           </section>
 
           {/* Options Area */}
-          <section className="bg-white rounded-2xl p-6 shadow-sm border border-slate-200 space-y-6">
-            <h2 className="text-sm font-bold uppercase tracking-widest text-slate-400 mb-2 flex items-center gap-2">
-              <Settings2 className="w-4 h-4" /> 2. Translation Options
+          <section className="bg-surface-container-lowest rounded-xl p-6 shadow-sm space-y-6">
+            <h2 className="text-[0.6875rem] font-bold tracking-[0.2em] uppercase text-on-surface-variant mb-2 flex items-center gap-2">
+              <Settings2 className="w-4 h-4" /> 2. Options
             </h2>
 
             <div className="grid grid-cols-2 gap-4">
               <div className="space-y-1.5">
-                <label className="text-xs font-bold text-slate-500 ml-1">Source Language</label>
+                <label className="text-[10px] font-bold tracking-widest uppercase text-on-surface-variant ml-1">Source</label>
                 <select 
                   value={options.sourceLang}
                   onChange={(e) => setOptions(prev => ({ ...prev, sourceLang: e.target.value }))}
-                  className="w-full bg-slate-50 border border-slate-200 rounded-xl px-4 py-2.5 text-sm outline-none focus:ring-2 focus:ring-indigo-500/20 transition-all"
+                  className="w-full bg-surface-container-low rounded-lg px-4 py-2.5 text-sm outline-none focus:ring-1 focus:ring-primary/20 transition-all border-none"
                 >
                   {LANGUAGES.map(l => <option key={l.code} value={l.code}>{l.name}</option>)}
                 </select>
               </div>
               <div className="space-y-1.5">
-                <label className="text-xs font-bold text-slate-500 ml-1">Target Language</label>
+                <label className="text-[10px] font-bold tracking-widest uppercase text-on-surface-variant ml-1">Target</label>
                 <select 
                   value={options.targetLang}
                   onChange={(e) => setOptions(prev => ({ ...prev, targetLang: e.target.value }))}
-                  className="w-full bg-slate-50 border border-slate-200 rounded-xl px-4 py-2.5 text-sm outline-none focus:ring-2 focus:ring-indigo-500/20 transition-all"
+                  className="w-full bg-surface-container-low rounded-lg px-4 py-2.5 text-sm outline-none focus:ring-1 focus:ring-primary/20 transition-all border-none"
                 >
                   {LANGUAGES.filter(l => l.code !== 'auto').map(l => <option key={l.code} value={l.code}>{l.name}</option>)}
                 </select>
@@ -387,32 +385,32 @@ export default function App() {
             </div>
 
             <div className="space-y-3">
-              <label className="text-xs font-bold text-slate-500 ml-1">Translation Mode</label>
+              <label className="text-[10px] font-bold tracking-widest uppercase text-on-surface-variant ml-1">Mode</label>
               <div className="grid grid-cols-1 gap-2">
                 {MODES.map(m => (
                   <button
                     key={m.id}
                     onClick={() => setOptions(prev => ({ ...prev, mode: m.id as any }))}
                     className={cn(
-                      "flex flex-col items-start p-3 rounded-xl border text-left transition-all",
+                      "flex flex-col items-start p-3 rounded-lg text-left transition-all",
                       options.mode === m.id 
-                        ? "border-indigo-500 bg-indigo-50 ring-1 ring-indigo-500" 
-                        : "border-slate-200 hover:border-slate-300 bg-white"
+                        ? "bg-primary/5 ring-1 ring-primary/20" 
+                        : "bg-surface-container-low hover:bg-surface-container-high"
                     )}
                   >
-                    <span className={cn("text-sm font-bold", options.mode === m.id ? "text-indigo-700" : "text-slate-700")}>{m.name}</span>
-                    <span className="text-[10px] text-slate-500">{m.desc}</span>
+                    <span className={cn("text-sm font-bold", options.mode === m.id ? "text-primary" : "text-on-surface")}>{m.name}</span>
+                    <span className="text-[10px] text-on-surface-variant">{m.desc}</span>
                   </button>
                 ))}
               </div>
             </div>
 
             <div className="space-y-1.5">
-              <label className="text-xs font-bold text-slate-500 ml-1">Custom Prompt</label>
+              <label className="text-[10px] font-bold tracking-widest uppercase text-on-surface-variant ml-1">Prompt</label>
               <textarea 
                 value={options.customPrompt}
                 onChange={(e) => setOptions(prev => ({ ...prev, customPrompt: e.target.value }))}
-                className="w-full h-32 bg-slate-50 border border-slate-200 rounded-xl px-4 py-3 text-xs text-slate-700 outline-none focus:ring-2 focus:ring-indigo-500/20 transition-all resize-none"
+                className="w-full h-32 bg-surface-container-low rounded-lg px-4 py-3 text-xs text-on-surface outline-none focus:ring-1 focus:ring-primary/20 transition-all resize-none border-none"
               />
             </div>
 
@@ -422,18 +420,18 @@ export default function App() {
                   type="checkbox" 
                   checked={options.keepSpeakerNames}
                   onChange={(e) => setOptions(prev => ({ ...prev, keepSpeakerNames: e.target.checked }))}
-                  className="w-4 h-4 rounded border-slate-300 text-indigo-600 focus:ring-indigo-500"
+                  className="w-4 h-4 rounded border-outline-variant/50 text-primary focus:ring-primary"
                 />
-                <span className="text-xs font-medium text-slate-600 group-hover:text-slate-900 transition-colors">Keep Speaker Names (e.g. [Name]:)</span>
+                <span className="text-xs font-medium text-on-surface-variant group-hover:text-on-surface transition-colors">Keep Speaker Names (e.g. [Name]:)</span>
               </label>
               <label className="flex items-center gap-3 cursor-pointer group">
                 <input 
                   type="checkbox" 
                   checked={options.translateSoundEffects}
                   onChange={(e) => setOptions(prev => ({ ...prev, translateSoundEffects: e.target.checked }))}
-                  className="w-4 h-4 rounded border-slate-300 text-indigo-600 focus:ring-indigo-500"
+                  className="w-4 h-4 rounded border-outline-variant/50 text-primary focus:ring-primary"
                 />
-                <span className="text-xs font-medium text-slate-600 group-hover:text-slate-900 transition-colors">Translate Sound Effects (e.g. (Music))</span>
+                <span className="text-xs font-medium text-on-surface-variant group-hover:text-on-surface transition-colors">Translate Sound Effects (e.g. (Music))</span>
               </label>
             </div>
 
@@ -442,45 +440,45 @@ export default function App() {
                 onClick={handleTranslateAll}
                 disabled={files.length === 0 || isTranslatingAll}
                 className={cn(
-                  "flex-1 py-4 rounded-xl font-bold text-sm transition-all flex items-center justify-center gap-2 shadow-lg",
+                  "flex-1 py-4 rounded-lg font-bold text-xs font-headline uppercase tracking-widest transition-all flex items-center justify-center gap-2",
                   files.length === 0 || isTranslatingAll
-                    ? "bg-slate-100 text-slate-400 cursor-not-allowed"
-                    : "bg-indigo-600 text-white hover:bg-indigo-700 active:scale-[0.98] shadow-indigo-200"
+                    ? "bg-surface-container-high text-on-surface-variant cursor-not-allowed"
+                    : "bg-gradient-to-br from-primary to-primary-container text-on-primary hover:shadow-[0_0_20px_rgba(0,7,42,0.2)] active:scale-[0.98]"
                 )}
               >
                 {isTranslatingAll ? (
                   <>
-                    <Loader2 className="w-5 h-5 animate-spin" />
+                    <Loader2 className="w-4 h-4 animate-spin" />
                     Translating...
                   </>
                 ) : (
                   <>
-                    <RefreshCw className="w-5 h-5" />
+                    <RefreshCw className="w-4 h-4" />
                     Translate All
                   </>
                 )}
               </button>
               <button 
                 onClick={handleReset}
-                className="px-4 py-4 bg-slate-100 text-slate-600 rounded-xl hover:bg-slate-200 transition-all active:scale-[0.98]"
+                className="px-4 py-4 bg-surface-container-high text-on-surface-variant rounded-lg hover:bg-surface-container-highest transition-all active:scale-[0.98]"
               >
-                <RefreshCw className="w-5 h-5" />
+                <RefreshCw className="w-4 h-4" />
               </button>
             </div>
           </section>
         </div>
 
         {/* Right Panel: Results */}
-        <div className="lg:col-span-8 flex flex-col min-h-[600px]">
-          <section className="bg-white rounded-2xl shadow-sm border border-slate-200 flex flex-col flex-1 overflow-hidden">
+        <div className="lg:col-span-8 flex flex-col min-h-[800px]">
+          <section className="bg-surface-container-lowest rounded-xl shadow-[0_4px_20px_rgba(0,7,42,0.04),0_12px_40px_rgba(0,7,42,0.08)] flex flex-col flex-1 overflow-hidden">
             {/* Tabs & Actions */}
-            <div className="px-6 py-4 border-b border-slate-100 flex items-center justify-between bg-slate-50/50">
-              <div className="flex bg-slate-200/50 p-1 rounded-xl">
+            <div className="px-8 py-6 border-b border-surface-container-low flex items-center justify-between">
+              <div className="flex bg-surface-container-low p-1 rounded-lg">
                 <button 
                   onClick={() => setActiveTab('source')}
                   className={cn(
-                    "px-4 py-1.5 rounded-lg text-xs font-bold transition-all flex items-center gap-2",
-                    activeTab === 'source' ? "bg-white text-slate-900 shadow-sm" : "text-slate-500 hover:text-slate-700"
+                    "px-4 py-2 rounded-md text-[10px] font-bold tracking-widest uppercase transition-all flex items-center gap-2",
+                    activeTab === 'source' ? "bg-surface-container-lowest text-primary shadow-sm" : "text-on-surface-variant hover:text-on-surface"
                   )}
                 >
                   <Eye className="w-3.5 h-3.5" /> Source
@@ -488,8 +486,8 @@ export default function App() {
                 <button 
                   onClick={() => setActiveTab('translated')}
                   className={cn(
-                    "px-4 py-1.5 rounded-lg text-xs font-bold transition-all flex items-center gap-2",
-                    activeTab === 'translated' ? "bg-white text-slate-900 shadow-sm" : "text-slate-500 hover:text-slate-700"
+                    "px-4 py-2 rounded-md text-[10px] font-bold tracking-widest uppercase transition-all flex items-center gap-2",
+                    activeTab === 'translated' ? "bg-surface-container-lowest text-primary shadow-sm" : "text-on-surface-variant hover:text-on-surface"
                   )}
                 >
                   <CheckCircle2 className="w-3.5 h-3.5" /> Translated
@@ -497,8 +495,8 @@ export default function App() {
                 <button 
                   onClick={() => setActiveTab('compare')}
                   className={cn(
-                    "px-4 py-1.5 rounded-lg text-xs font-bold transition-all flex items-center gap-2",
-                    activeTab === 'compare' ? "bg-white text-slate-900 shadow-sm" : "text-slate-500 hover:text-slate-700"
+                    "px-4 py-2 rounded-md text-[10px] font-bold tracking-widest uppercase transition-all flex items-center gap-2",
+                    activeTab === 'compare' ? "bg-surface-container-lowest text-primary shadow-sm" : "text-on-surface-variant hover:text-on-surface"
                   )}
                 >
                   <Columns className="w-3.5 h-3.5" /> Compare
@@ -509,30 +507,30 @@ export default function App() {
                 <button 
                   onClick={() => selectedFileIndex !== null && handleCopy(selectedFileIndex)}
                   disabled={!currentFile || currentFile.translatedBlocks.length === 0}
-                  className="p-2 text-slate-500 hover:text-indigo-600 hover:bg-indigo-50 rounded-lg transition-all disabled:opacity-30"
+                  className="p-2 text-on-surface-variant hover:text-primary hover:bg-primary/5 rounded-lg transition-all disabled:opacity-30"
                   title="Copy to clipboard"
                 >
                   <Copy className="w-4 h-4" />
                 </button>
-                <div className="w-px h-4 bg-slate-200 mx-1" />
+                <div className="w-px h-4 bg-surface-container-high mx-1" />
                 <button 
                   onClick={() => selectedFileIndex !== null && handleDownload(selectedFileIndex, 'srt')}
                   disabled={!currentFile || currentFile.translatedBlocks.length === 0}
-                  className="flex items-center gap-2 px-3 py-1.5 bg-emerald-600 text-white rounded-lg hover:bg-emerald-700 transition-all text-xs font-bold disabled:opacity-30"
+                  className="flex items-center gap-2 px-4 py-2 bg-surface-container-low text-primary rounded-lg hover:bg-surface-container-high transition-all text-[10px] font-bold tracking-widest uppercase disabled:opacity-30"
                 >
                   <FileDown className="w-3.5 h-3.5" /> .SRT
                 </button>
                 <button 
                   onClick={() => selectedFileIndex !== null && handleDownload(selectedFileIndex, 'txt')}
                   disabled={!currentFile || currentFile.translatedBlocks.length === 0}
-                  className="flex items-center gap-2 px-3 py-1.5 bg-slate-800 text-white rounded-lg hover:bg-slate-900 transition-all text-xs font-bold disabled:opacity-30"
+                  className="flex items-center gap-2 px-4 py-2 bg-surface-container-low text-primary rounded-lg hover:bg-surface-container-high transition-all text-[10px] font-bold tracking-widest uppercase disabled:opacity-30"
                 >
                   <FileText className="w-3.5 h-3.5" /> .TXT
                 </button>
                 {files.some(f => f.status === 'completed') && (
                   <button 
                     onClick={handleDownloadAll}
-                    className="flex items-center gap-2 px-3 py-1.5 bg-indigo-600 text-white rounded-lg hover:bg-indigo-700 transition-all text-xs font-bold shadow-sm shadow-indigo-200"
+                    className="flex items-center gap-2 px-4 py-2 bg-primary text-on-primary rounded-lg hover:bg-primary-container transition-all text-[10px] font-bold tracking-widest uppercase shadow-sm"
                     title="Download all completed as ZIP"
                   >
                     <Download className="w-3.5 h-3.5" /> All (ZIP)
@@ -542,7 +540,7 @@ export default function App() {
             </div>
 
             {/* Content View */}
-            <div className="flex-1 overflow-hidden relative">
+            <div className="flex-1 overflow-hidden relative bg-surface-container-lowest">
               <AnimatePresence mode="wait">
                 {!currentFile && (
                   <motion.div 
@@ -551,11 +549,11 @@ export default function App() {
                     animate={{ opacity: 1 }}
                     className="h-full flex flex-col items-center justify-center p-12 text-center"
                   >
-                    <div className="w-20 h-20 bg-slate-50 rounded-full flex items-center justify-center mb-6">
-                      <FileText className="w-10 h-10 text-slate-200" />
+                    <div className="w-20 h-20 bg-surface-container-low rounded-full flex items-center justify-center mb-6">
+                      <FileText className="w-10 h-10 text-outline-variant" />
                     </div>
-                    <h3 className="text-slate-400 font-bold mb-2">No Subtitles Loaded</h3>
-                    <p className="text-slate-300 text-sm max-w-xs">Upload files or load the sample to start the translation process.</p>
+                    <h3 className="text-3xl font-headline font-bold text-primary mb-4">No Subtitles Loaded</h3>
+                    <p className="text-on-surface-variant text-sm max-w-md leading-relaxed">Upload files or load the sample to start the translation process. The Architect Editor maintains absolute legibility and structural integrity.</p>
                   </motion.div>
                 )}
 
@@ -567,14 +565,14 @@ export default function App() {
                     className="h-full flex flex-col items-center justify-center p-12 text-center"
                   >
                     <div className="relative mb-8">
-                      <div className="w-24 h-24 border-4 border-indigo-100 rounded-full" />
-                      <div className="w-24 h-24 border-4 border-indigo-600 border-t-transparent rounded-full animate-spin absolute top-0" />
+                      <div className="w-24 h-24 border-4 border-surface-container-high rounded-full" />
+                      <div className="w-24 h-24 border-4 border-primary border-t-transparent rounded-full animate-spin absolute top-0" />
                       <div className="absolute inset-0 flex items-center justify-center">
-                        <span className="text-lg font-bold text-indigo-600">{currentFile.progress}%</span>
+                        <span className="text-lg font-bold text-primary">{currentFile.progress}%</span>
                       </div>
                     </div>
-                    <h3 className="text-slate-800 font-bold text-xl mb-2">Architecting Translation...</h3>
-                    <p className="text-slate-500 text-sm">Processing "{currentFile.name}" using Gemini AI.</p>
+                    <h3 className="text-3xl font-headline font-bold text-primary mb-4">Architecting Translation...</h3>
+                    <p className="text-on-surface-variant text-sm">Processing "{currentFile.name}" with extreme precision.</p>
                   </motion.div>
                 )}
 
@@ -585,14 +583,14 @@ export default function App() {
                     animate={{ opacity: 1 }}
                     className="h-full flex flex-col items-center justify-center p-12 text-center"
                   >
-                    <div className="w-16 h-16 bg-red-50 rounded-full flex items-center justify-center mb-6">
-                      <AlertCircle className="w-8 h-8 text-red-500" />
+                    <div className="w-16 h-16 bg-error-container rounded-full flex items-center justify-center mb-6">
+                      <AlertCircle className="w-8 h-8 text-error" />
                     </div>
-                    <h3 className="text-red-600 font-bold text-lg mb-2">Translation Error</h3>
-                    <p className="text-red-400 text-sm max-w-md">{currentFile.error}</p>
+                    <h3 className="text-error font-headline font-bold text-2xl mb-4">Translation Error</h3>
+                    <p className="text-on-surface-variant text-sm max-w-md mb-8">{currentFile.error}</p>
                     <button 
                       onClick={() => selectedFileIndex !== null && translateFile(selectedFileIndex)}
-                      className="mt-6 px-6 py-2 bg-red-600 text-white rounded-xl font-bold text-sm hover:bg-red-700 transition-all"
+                      className="px-8 py-3 bg-primary text-on-primary rounded-lg font-bold text-xs font-headline uppercase tracking-widest hover:bg-primary-container transition-all"
                     >
                       Retry
                     </button>
@@ -604,32 +602,30 @@ export default function App() {
                     key="content"
                     initial={{ opacity: 0 }}
                     animate={{ opacity: 1 }}
-                    className="h-full overflow-y-auto p-6 scrollbar-thin scrollbar-thumb-slate-200"
+                    className="h-full overflow-y-auto p-8 scrollbar-thin scrollbar-thumb-surface-container-high"
                   >
                     {activeTab === 'compare' ? (
-                      <div className="space-y-4">
+                      <div className="space-y-8">
                         {currentFile.blocks.map((block, i) => (
-                          <div key={block.id} className="grid grid-cols-2 gap-6 p-4 bg-slate-50 rounded-xl border border-slate-100">
-                            <div className="space-y-2">
-                              <div className="flex items-center gap-2 text-[10px] font-mono text-slate-400">
-                                <span className="bg-slate-200 px-1.5 py-0.5 rounded text-slate-600">{block.index || i+1}</span>
-                                <span>{block.timestamp}</span>
-                              </div>
-                              <p className="text-sm text-slate-600 leading-relaxed">{block.originalText}</p>
+                          <div key={block.id} className="flex gap-8 items-start relative group">
+                            <div className="absolute -left-8 top-0 bottom-0 w-1 bg-primary rounded-full opacity-0 group-hover:opacity-100 transition-opacity"></div>
+                            <div className="w-24 shrink-0 pt-1">
+                              <div className="text-[10px] font-mono text-on-surface-variant font-bold">{block.timestamp?.split(' --> ')[0]}</div>
+                              <div className="text-[10px] font-mono text-outline-variant">{block.timestamp?.split(' --> ')[1]}</div>
                             </div>
-                            <div className="space-y-2 border-l border-slate-200 pl-6">
-                              <div className="flex items-center gap-2 text-[10px] font-mono text-indigo-400">
-                                <span className="bg-indigo-100 px-1.5 py-0.5 rounded text-indigo-600">TRANSLATED</span>
+                            <div className="flex-1 space-y-4">
+                              <div className="bg-surface-container-low p-5 rounded-xl text-sm text-on-surface-variant leading-relaxed">
+                                {block.originalText}
                               </div>
-                              <p className="text-sm text-slate-900 font-medium leading-relaxed">
+                              <div className="bg-surface-container-lowest p-5 rounded-xl text-sm text-primary font-medium leading-relaxed shadow-sm ring-1 ring-primary/5">
                                 {currentFile.translatedBlocks[i]?.text || "..."}
-                              </p>
+                              </div>
                             </div>
                           </div>
                         ))}
                       </div>
                     ) : (
-                      <div className="bg-slate-900 rounded-2xl p-6 font-mono text-xs leading-relaxed text-slate-300 min-h-full">
+                      <div className="bg-surface-container-low rounded-xl p-8 font-mono text-sm leading-relaxed text-on-surface min-h-full">
                         <pre className="whitespace-pre-wrap">
                           {activeTab === 'source' 
                             ? reassembleSubtitles(currentFile.blocks, currentFile.ext as any || 'srt')
@@ -646,15 +642,9 @@ export default function App() {
         </div>
       </main>
 
-      <footer className="max-w-7xl mx-auto px-6 py-12 flex flex-col items-center gap-4">
-        <div className="h-px w-full bg-gradient-to-r from-transparent via-slate-200 to-transparent" />
-        <div className="flex items-center gap-6 text-[10px] font-bold text-slate-400 uppercase tracking-[0.3em]">
-          <span>© 2026 AI Subtitle Architect</span>
-          <span className="w-1 h-1 bg-slate-300 rounded-full" />
-          <span>Powered by Gemini 3 Flash</span>
-          <span className="w-1 h-1 bg-slate-300 rounded-full" />
-          <span>v1.0.0</span>
-        </div>
+      <footer className="bg-primary py-16 px-8 text-center border-t border-white/5 mt-12">
+        <div className="text-on-primary-container font-headline font-black text-2xl tracking-tighter mb-4">Architect Editor</div>
+        <p className="text-on-primary/60 text-xs font-medium tracking-widest uppercase">Premium Tier Workstation © 2026</p>
       </footer>
 
       {/* Notification Toast */}
@@ -665,11 +655,11 @@ export default function App() {
             animate={{ opacity: 1, y: 0, scale: 1 }}
             exit={{ opacity: 0, y: 20, scale: 0.9 }}
             className={cn(
-              "fixed bottom-8 left-1/2 -translate-x-1/2 px-6 py-3 rounded-2xl shadow-2xl z-[100] flex items-center gap-3 font-bold text-sm",
-              notification.type === 'success' ? "bg-slate-900 text-white" : "bg-red-600 text-white"
+              "fixed bottom-8 left-1/2 -translate-x-1/2 px-8 py-4 rounded-xl shadow-[0_12px_40px_rgba(0,7,42,0.12)] z-[100] flex items-center gap-4 font-bold text-xs font-headline tracking-widest uppercase",
+              notification.type === 'success' ? "bg-primary text-on-primary" : "bg-error text-on-error"
             )}
           >
-            {notification.type === 'success' ? <CheckCircle2 className="w-5 h-5 text-emerald-400" /> : <AlertCircle className="w-5 h-5" />}
+            {notification.type === 'success' ? <CheckCircle2 className="w-5 h-5 text-on-primary-container" /> : <AlertCircle className="w-5 h-5" />}
             {notification.message}
           </motion.div>
         )}

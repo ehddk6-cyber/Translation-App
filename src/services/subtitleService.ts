@@ -172,16 +172,137 @@ Additional instructions: ${customPrompt || 'None'}.
 Return ONLY the translated subtitle content in the same subtitle format. Do not add any commentary.`;
 
     try {
-      const response = await ai.models.generateContent({
-        model: "gemini-3-flash-preview",
-        contents: chunkInput,
-        config: {
-          systemInstruction,
-        }
-      });
+      let responseText = "";
+      let success = false;
 
-      const translatedText = response.text || "";
-      const parsedChunk = parseSubtitleContent(translatedText, 'srt'); // Use srt parser for the output
+      // 1. Primary: Gemini 3 Flash
+      try {
+        const response = await ai.models.generateContent({
+          model: "gemini-3-flash-preview",
+          contents: chunkInput,
+          config: { systemInstruction }
+        });
+        responseText = response.text || "";
+        success = true;
+      } catch (e: any) {
+        console.warn("Gemini 3 Flash failed, trying OpenRouter...", e.message);
+      }
+
+      // 2. Fallback: OpenRouter (Stepfun)
+      if (!success && import.meta.env.VITE_OPENROUTER_API_KEY) {
+        try {
+          const res = await fetch("https://openrouter.ai/api/v1/chat/completions", {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+              "Authorization": `Bearer ${import.meta.env.VITE_OPENROUTER_API_KEY}`,
+              "HTTP-Referer": window.location.origin,
+              "X-Title": "AI Subtitle Architect"
+            },
+            body: JSON.stringify({
+              model: "stepfun/step-3.5-flash:free",
+              messages: [
+                { role: "system", content: systemInstruction },
+                { role: "user", content: chunkInput }
+              ]
+            })
+          });
+          if (res.ok) {
+            const data = await res.json();
+            responseText = data.choices[0].message.content || "";
+            success = true;
+          } else {
+            console.warn("OpenRouter failed with status:", res.status);
+          }
+        } catch (e: any) {
+          console.warn("OpenRouter error:", e.message);
+        }
+      }
+
+      // 3. Fallback: Groq (Multiple Models)
+      if (!success && import.meta.env.VITE_GROQ_API_KEY) {
+        const groqModels = ["openai/gpt-oss-120b", "llama-3.3-70b-versatile"];
+        for (const model of groqModels) {
+          if (success) break;
+          try {
+            const res = await fetch("https://api.groq.com/openai/v1/chat/completions", {
+              method: "POST",
+              headers: {
+                "Content-Type": "application/json",
+                "Authorization": `Bearer ${import.meta.env.VITE_GROQ_API_KEY}`
+              },
+              body: JSON.stringify({
+                model: model,
+                messages: [
+                  { role: "system", content: systemInstruction },
+                  { role: "user", content: chunkInput }
+                ]
+              })
+            });
+            if (res.ok) {
+              const data = await res.json();
+              responseText = data.choices[0].message.content || "";
+              success = true;
+            } else {
+              console.warn(`Groq (${model}) failed with status:`, res.status);
+            }
+          } catch (e: any) {
+            console.warn(`Groq (${model}) error:`, e.message);
+          }
+        }
+      }
+
+      // 4. Fallback: GLM (Multiple Models)
+      if (!success && import.meta.env.VITE_GLM_API_KEY) {
+        const glmModels = ["glm-4.7-flash", "glm-4"];
+        for (const model of glmModels) {
+          if (success) break;
+          try {
+            const res = await fetch("https://open.bigmodel.cn/api/paas/v4/chat/completions", {
+              method: "POST",
+              headers: {
+                "Content-Type": "application/json",
+                "Authorization": `Bearer ${import.meta.env.VITE_GLM_API_KEY}`
+              },
+              body: JSON.stringify({
+                model: model,
+                messages: [
+                  { role: "system", content: systemInstruction },
+                  { role: "user", content: chunkInput }
+                ]
+              })
+            });
+            if (res.ok) {
+              const data = await res.json();
+              responseText = data.choices[0].message.content || "";
+              success = true;
+            } else {
+              console.warn(`GLM (${model}) failed with status:`, res.status);
+            }
+          } catch (e: any) {
+            console.warn(`GLM (${model}) error:`, e.message);
+          }
+        }
+      }
+
+      // 5. Final Fallback: Gemini 3.1 Flash Lite (Internal)
+      if (!success) {
+        try {
+          const response = await ai.models.generateContent({
+            model: "gemini-3.1-flash-lite-preview",
+            contents: chunkInput,
+            config: { systemInstruction }
+          });
+          responseText = response.text || "";
+          success = true;
+        } catch (e: any) {
+          console.error("Final internal fallback failed:", e.message);
+        }
+      }
+
+      if (!success) throw new Error("All translation providers failed.");
+
+      const parsedChunk = parseSubtitleContent(responseText, 'srt');
       
       // Map translated text back to blocks
       chunk.forEach((block, idx) => {
@@ -191,7 +312,7 @@ Return ONLY the translated subtitle content in the same subtitle format. Do not 
         });
       });
     } catch (error) {
-      console.error("Translation error for chunk:", i, error);
+      console.error("Critical translation error for chunk:", i, error);
       chunk.forEach(block => {
         translatedBlocks.push({ ...block, text: "[Error]" });
       });
