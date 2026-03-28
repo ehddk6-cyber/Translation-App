@@ -1,0 +1,342 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Architect Editor | Project Alpha Editor (Dark)</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&amp;family=Inter:wght@400;500;600&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              "tertiary-fixed-dim": "#ffb691",
+              "surface-container-lowest": "#ffffff",
+              "inverse-on-surface": "#eff1f3",
+              "tertiary": "#180500",
+              "primary-container": "#001a5e",
+              "on-surface": "#191c1e",
+              "on-background": "#191c1e",
+              "on-error-container": "#93000a",
+              "surface-variant": "#e0e3e5",
+              "on-error": "#ffffff",
+              "surface-tint": "#004dea",
+              "surface-container-highest": "#e0e3e5",
+              "tertiary-container": "#3d1500",
+              "surface-container-low": "#f2f4f6",
+              "primary-fixed-dim": "#b6c4ff",
+              "on-tertiary": "#ffffff",
+              "on-primary-container": "#5b80ff",
+              "inverse-primary": "#b6c4ff",
+              "on-secondary-container": "#3f5881",
+              "tertiary-fixed": "#ffdbcb",
+              "primary": "#00072a",
+              "on-tertiary-fixed-variant": "#6c391d",
+              "on-surface-variant": "#44474e",
+              "surface": "#f7f9fb",
+              "outline-variant": "#c4c6cf",
+              "on-secondary-fixed-variant": "#2d476f",
+              "secondary-fixed": "#d6e3ff",
+              "surface-container-high": "#e6e8ea",
+              "surface-container": "#eceef0",
+              "on-tertiary-fixed": "#341100",
+              "on-secondary-fixed": "#001b3d",
+              "on-primary-fixed-variant": "#0039b3",
+              "on-tertiary-container": "#b97958",
+              "secondary-fixed-dim": "#aec7f6",
+              "error-container": "#ffdad6",
+              "secondary-container": "#b6d0ff",
+              "primary-fixed": "#dce1ff",
+              "surface-dim": "#d8dadc",
+              "on-primary": "#ffffff",
+              "error": "#ba1a1a",
+              "secondary": "#465f88",
+              "outline": "#74777f",
+              "surface-bright": "#f7f9fb",
+              "on-primary-fixed": "#001551",
+              "on-secondary": "#ffffff",
+              "background": "#f7f9fb",
+              "inverse-surface": "#2d3133"
+            },
+            fontFamily: {
+              "headline": ["Manrope"],
+              "body": ["Inter"],
+              "label": ["Inter"]
+            },
+            borderRadius: {"DEFAULT": "0.125rem", "lg": "0.25rem", "xl": "0.5rem", "full": "0.75rem"},
+          },
+        },
+      }
+    </script>
+<style>
+        body { background-color: #00072a; color: #f7f9fb; }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .custom-scrollbar::-webkit-scrollbar { width: 4px; }
+        .custom-scrollbar::-webkit-scrollbar-track { background: transparent; }
+        .custom-scrollbar::-webkit-scrollbar-thumb { background: #44474e; border-radius: 10px; }
+        .editor-container { height: calc(100vh - 128px); }
+    </style>
+</head>
+<body class="font-body selection:bg-on-primary-container selection:text-primary overflow-hidden">
+<!-- Left Panel: SideNavBar -->
+<aside class="h-screen w-64 fixed left-0 top-0 border-r-0 bg-slate-50 dark:bg-slate-900 flex flex-col h-full p-4 font-['Manrope'] antialiased">
+<div class="flex items-center gap-3 px-2 mb-10">
+<div class="w-8 h-8 rounded-lg bg-gradient-to-br from-primary to-primary-container flex items-center justify-center shadow-lg border border-white/10">
+<span class="material-symbols-outlined text-white text-lg">architecture</span>
+</div>
+<div class="flex flex-col">
+<span class="text-lg font-bold tracking-tight text-[#002147] dark:text-white">Architect Editor</span>
+<span class="text-[10px] uppercase tracking-[0.2em] text-slate-500 dark:text-slate-400">Premium AI Subtitles</span>
+</div>
+</div>
+<nav class="flex-1 space-y-1">
+<!-- Dashboard -->
+<a class="flex items-center gap-3 px-3 py-2.5 text-slate-500 dark:text-slate-400 hover:text-[#002147] hover:bg-[#e0e3e5] dark:hover:bg-slate-700 transition-colors duration-200 rounded-lg group" href="#">
+<span class="material-symbols-outlined group-hover:scale-110 transition-transform" data-icon="dashboard">dashboard</span>
+<span class="text-sm font-medium">Dashboard</span>
+</a>
+<!-- Projects (Active) -->
+<a class="flex items-center gap-3 px-3 py-2.5 text-[#002147] dark:text-white font-semibold bg-white dark:bg-slate-800 rounded-lg shadow-sm transition-transform scale-98 active:scale-95" href="#">
+<span class="material-symbols-outlined" data-icon="folder_open" style="font-variation-settings: 'FILL' 1;">folder_open</span>
+<span class="text-sm">Projects</span>
+</a>
+<!-- Settings -->
+<a class="flex items-center gap-3 px-3 py-2.5 text-slate-500 dark:text-slate-400 hover:text-[#002147] hover:bg-[#e0e3e5] dark:hover:bg-slate-700 transition-colors duration-200 rounded-lg group" href="#">
+<span class="material-symbols-outlined group-hover:rotate-45 transition-transform" data-icon="settings">settings</span>
+<span class="text-sm font-medium">Settings</span>
+</a>
+<!-- Account -->
+<a class="flex items-center gap-3 px-3 py-2.5 text-slate-500 dark:text-slate-400 hover:text-[#002147] hover:bg-[#e0e3e5] dark:hover:bg-slate-700 transition-colors duration-200 rounded-lg group" href="#">
+<span class="material-symbols-outlined group-hover:scale-110 transition-transform" data-icon="person_headset">headset</span>
+<span class="text-sm font-medium">Account</span>
+</a>
+</nav>
+<div class="mt-auto pt-6 border-t border-slate-200 dark:border-slate-800">
+<button class="w-full flex items-center justify-center gap-2 py-3 px-4 rounded-xl bg-gradient-to-tr from-primary to-primary-container text-white font-semibold text-sm shadow-xl hover:opacity-90 active:scale-95 transition-all">
+<span class="material-symbols-outlined text-lg">add_circle</span>
+                New Project
+            </button>
+<div class="mt-6 flex items-center gap-3 px-2">
+<img alt="User Profile Avatar" class="w-10 h-10 rounded-full object-cover border-2 border-slate-200 dark:border-slate-700 shadow-sm" data-alt="Portrait of a creative professional in a dark studio setting with cinematic rim lighting" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAibVYeCVOGUhJEaYHkSBWm-2egfDLJUOOA7DrT2bQeDtLxsOqehzICha8_F4zLavfB41XBo4uOrPkZGN7punDlU2jXd822OCNzQJwL0acC7aEeSKFpBUXFiwKPg5us24ubeqA9mRM_ynvUVKDTwnupXMGLs4Wnz8QpCIUahgzXHQ2CFiQwZJ0E4xAWjzu5XFFDEUf5Ms399GuBpnH4cCW7Jo_fWk6T706QBAPp9L5674t2jqqOYhrzCfSdUutz3J8LtN2dlBsNMRUE"/>
+<div class="flex flex-col">
+<span class="text-xs font-bold text-slate-900 dark:text-white">Marcus Thorne</span>
+<span class="text-[10px] text-slate-500">Professional Editor</span>
+</div>
+</div>
+</div>
+</aside>
+<!-- TopNavBar -->
+<header class="fixed top-0 right-0 left-64 h-16 z-40 flex justify-between items-center px-8 w-full bg-white/80 dark:bg-slate-950/80 backdrop-blur-xl border-b border-slate-100 dark:border-slate-800/50 shadow-[0_4px_20px_rgba(0,7,42,0.04)] font-['Manrope'] text-sm font-medium tracking-wide text-[#002147] dark:text-blue-100">
+<div class="flex items-center gap-8">
+<nav class="flex items-center gap-6">
+<a class="text-slate-400 dark:text-slate-500 hover:text-[#002147] transition-all" href="#">Project Alpha</a>
+<span class="text-slate-200 dark:text-slate-800">/</span>
+<a class="text-[#002147] dark:text-white border-b-2 border-[#002147] pb-1" href="#">Current Draft</a>
+</nav>
+</div>
+<div class="flex items-center gap-4">
+<div class="flex items-center gap-2 mr-4 text-slate-400">
+<span class="material-symbols-outlined text-lg" data-icon="cloud_done">cloud_done</span>
+<span class="material-symbols-outlined text-lg hover:text-white cursor-pointer" data-icon="history">history</span>
+</div>
+<button class="px-5 py-1.5 rounded-lg border border-slate-200 dark:border-slate-700 text-slate-600 dark:text-slate-300 hover:bg-slate-50 dark:hover:bg-slate-800 active:opacity-80 scale-[0.99] transition-all">
+                Share
+            </button>
+<button class="px-6 py-1.5 rounded-lg bg-primary dark:bg-blue-600 text-white font-bold hover:bg-primary-container dark:hover:bg-blue-500 active:opacity-80 scale-[0.99] transition-all">
+                Export
+            </button>
+</div>
+</header>
+<!-- Main Content Area -->
+<main class="ml-64 pt-16 h-screen flex flex-col bg-slate-950">
+<!-- Top Control Section -->
+<section class="p-6 bg-slate-900/50 border-b border-slate-800/50 flex items-center justify-between">
+<div class="flex items-center gap-4">
+<div class="flex flex-col gap-1.5">
+<label class="text-[10px] font-bold uppercase tracking-widest text-slate-500">Source</label>
+<div class="flex items-center gap-2 px-4 py-2 bg-slate-800 rounded-lg text-white font-medium border border-transparent focus-within:border-blue-500/50 transition-all cursor-pointer">
+<span class="text-sm">English (US)</span>
+<span class="material-symbols-outlined text-sm">keyboard_arrow_down</span>
+</div>
+</div>
+<div class="flex items-center mt-5 text-slate-600">
+<span class="material-symbols-outlined">trending_flat</span>
+</div>
+<div class="flex flex-col gap-1.5">
+<label class="text-[10px] font-bold uppercase tracking-widest text-slate-500">Target</label>
+<div class="flex items-center gap-2 px-4 py-2 bg-slate-800 rounded-lg text-white font-medium border border-transparent focus-within:border-blue-500/50 transition-all cursor-pointer">
+<span class="text-sm">Japanese (Natural)</span>
+<span class="material-symbols-outlined text-sm">keyboard_arrow_down</span>
+</div>
+</div>
+<div class="h-10 w-[1px] bg-slate-800 mx-4"></div>
+<div class="flex flex-col gap-1.5">
+<label class="text-[10px] font-bold uppercase tracking-widest text-slate-500">Mode</label>
+<div class="flex items-center gap-2 px-4 py-2 bg-slate-800/40 rounded-lg text-slate-300 font-medium border border-slate-700/50 hover:bg-slate-800 transition-all cursor-pointer">
+<span class="material-symbols-outlined text-lg">auto_awesome</span>
+<span class="text-sm">Context-Aware AI</span>
+<span class="material-symbols-outlined text-sm">keyboard_arrow_down</span>
+</div>
+</div>
+</div>
+<button class="flex items-center gap-2 px-8 py-3 bg-gradient-to-tr from-blue-600 to-blue-400 text-white font-bold rounded-xl shadow-[0_0_30px_rgba(37,99,235,0.2)] hover:shadow-[0_0_40px_rgba(37,99,235,0.4)] hover:-translate-y-0.5 active:translate-y-0 transition-all">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">translate</span>
+                Translate All
+            </button>
+</section>
+<!-- Editor Section -->
+<section class="flex-1 overflow-hidden flex">
+<!-- Subtitle List -->
+<div class="flex-1 overflow-y-auto p-8 custom-scrollbar editor-container space-y-6">
+<!-- Subtitle Block 1 -->
+<div class="flex items-start gap-6 group">
+<div class="flex flex-col items-center gap-2 pt-2">
+<span class="text-[11px] font-mono text-slate-600 group-hover:text-blue-400 transition-colors">00:01:24</span>
+<div class="w-[2px] h-12 bg-slate-800 rounded-full group-hover:bg-slate-700"></div>
+<span class="text-[11px] font-mono text-slate-600 group-hover:text-blue-400 transition-colors">00:01:28</span>
+</div>
+<div class="flex-1 grid grid-cols-2 gap-px bg-slate-800 rounded-xl overflow-hidden shadow-2xl border border-slate-800">
+<!-- Source -->
+<div class="bg-slate-900/40 p-5 focus-within:bg-slate-900 transition-colors">
+<textarea class="w-full bg-transparent border-none p-0 text-slate-400 focus:ring-0 text-sm leading-relaxed resize-none" rows="2">Wait, so the architecture of the language model itself determines the latency?</textarea>
+</div>
+<!-- Target (Active Focus) -->
+<div class="bg-slate-900 p-5 border-l border-slate-800 relative group/block">
+<div class="absolute left-0 top-0 bottom-0 w-1 bg-blue-500"></div>
+<textarea class="w-full bg-transparent border-none p-0 text-white focus:ring-0 text-sm leading-relaxed resize-none font-medium" rows="2">つまり、言語モデル自体のアーキテクチャがレイテンシを決定するということですか？</textarea>
+<div class="absolute right-4 bottom-3 flex items-center gap-2 opacity-0 group-hover/block:opacity-100 transition-opacity">
+<span class="material-symbols-outlined text-xs text-slate-500 hover:text-white cursor-pointer">check_circle</span>
+<span class="material-symbols-outlined text-xs text-slate-500 hover:text-white cursor-pointer">content_copy</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Subtitle Block 2 -->
+<div class="flex items-start gap-6 group">
+<div class="flex flex-col items-center gap-2 pt-2">
+<span class="text-[11px] font-mono text-slate-600 group-hover:text-blue-400 transition-colors">00:01:28</span>
+<div class="w-[2px] h-8 bg-slate-800 rounded-full group-hover:bg-slate-700"></div>
+<span class="text-[11px] font-mono text-slate-600 group-hover:text-blue-400 transition-colors">00:01:31</span>
+</div>
+<div class="flex-1 grid grid-cols-2 gap-px bg-slate-800 rounded-xl overflow-hidden shadow-2xl border border-slate-800">
+<div class="bg-slate-900/40 p-5 focus-within:bg-slate-900 transition-colors">
+<textarea class="w-full bg-transparent border-none p-0 text-slate-400 focus:ring-0 text-sm leading-relaxed resize-none" rows="2">Exactly. We've optimized the attention mechanism to prioritize key frames.</textarea>
+</div>
+<div class="bg-slate-900/40 p-5 border-l border-slate-800 relative group/block">
+<textarea class="w-full bg-transparent border-none p-0 text-slate-500 focus:ring-0 text-sm leading-relaxed resize-none" rows="2">その通りです。キーフレームを優先するようにアテンションメカニズムを最適化しました。</textarea>
+</div>
+</div>
+</div>
+<!-- Subtitle Block 3 -->
+<div class="flex items-start gap-6 group">
+<div class="flex flex-col items-center gap-2 pt-2">
+<span class="text-[11px] font-mono text-slate-600 group-hover:text-blue-400 transition-colors">00:01:32</span>
+<div class="w-[2px] h-14 bg-slate-800 rounded-full group-hover:bg-slate-700"></div>
+<span class="text-[11px] font-mono text-slate-600 group-hover:text-blue-400 transition-colors">00:01:38</span>
+</div>
+<div class="flex-1 grid grid-cols-2 gap-px bg-slate-800 rounded-xl overflow-hidden shadow-2xl border border-slate-800">
+<div class="bg-slate-900/40 p-5 focus-within:bg-slate-900 transition-colors">
+<textarea class="w-full bg-transparent border-none p-0 text-slate-400 focus:ring-0 text-sm leading-relaxed resize-none" rows="2">This ensures that even during high-load periods, the primary narrative remains synchronized.</textarea>
+</div>
+<div class="bg-slate-900/40 p-5 border-l border-slate-800 relative group/block">
+<textarea class="w-full bg-transparent border-none p-0 text-slate-500 focus:ring-0 text-sm leading-relaxed resize-none" rows="2">これにより、高負荷時でも主要なナラティブが同期されたままになります。</textarea>
+</div>
+</div>
+</div>
+<!-- Subtitle Block 4 (Active Focus) -->
+<div class="flex items-start gap-6 group">
+<div class="flex flex-col items-center gap-2 pt-2">
+<span class="text-[11px] font-mono text-blue-400">00:01:39</span>
+<div class="w-[2px] h-10 bg-blue-500/30 rounded-full"></div>
+<span class="text-[11px] font-mono text-blue-400">00:01:42</span>
+</div>
+<div class="flex-1 grid grid-cols-2 gap-px bg-slate-800 rounded-xl overflow-hidden shadow-2xl border border-slate-700 ring-1 ring-blue-500/20">
+<div class="bg-slate-900/60 p-5 focus-within:bg-slate-900 transition-colors">
+<textarea class="w-full bg-transparent border-none p-0 text-slate-400 focus:ring-0 text-sm leading-relaxed resize-none" rows="2">Let's look at the performance benchmarks from our latest test run.</textarea>
+</div>
+<div class="bg-slate-950 p-5 border-l border-slate-800 relative">
+<div class="absolute left-0 top-0 bottom-0 w-1 bg-blue-500"></div>
+<textarea class="w-full bg-transparent border-none p-0 text-white focus:ring-0 text-sm leading-relaxed resize-none font-medium" placeholder="Start typing translation..." rows="2"></textarea>
+<div class="mt-4 flex items-center justify-between">
+<span class="text-[10px] text-blue-400 font-bold uppercase tracking-widest">AI Suggestion</span>
+<div class="flex gap-2">
+<button class="px-2 py-1 text-[10px] bg-slate-800 text-slate-300 rounded hover:bg-slate-700 transition-colors">Formal</button>
+<button class="px-2 py-1 text-[10px] bg-blue-600/20 text-blue-400 rounded ring-1 ring-blue-500/30">Casual</button>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Right Sidebar: Secondary Metadata / Timeline Preview -->
+<div class="w-80 bg-slate-900/30 border-l border-slate-800/50 p-6 flex flex-col gap-8">
+<div>
+<h3 class="text-[10px] font-bold uppercase tracking-widest text-slate-500 mb-4">Video Preview</h3>
+<div class="aspect-video rounded-xl bg-slate-950 border border-slate-800 overflow-hidden relative group">
+<img alt="Video Preview" class="w-full h-full object-cover opacity-60" data-alt="Macbook Pro on a desk showing complex code and node diagrams in a dimly lit high-tech workspace" src="https://lh3.googleusercontent.com/aida-public/AB6AXuADfIBZUQAYrgBLgHAQC9gAS80I4i21jj9kW2Cac-ySxzIisytrWHyplS-FLNUNXtmeSk6Xsw1Yx0DGrbvTuAayj6lrAFOHgRMgTXagda7jMKwVryUVBnDBab9ZiqtEK2w-c1STxURO0bC-pIqxLvnnfwZWyFJnrNiofnOiA82-5uDxJhVfmlWx7v1IjErM81xcYwtMbTl50kB3OBuMzaT74y1sFrvZYUOcFpyKnF5R0Q3TwFhBACH7QIsAD93TVZIXVvG0Vp8rDY0K"/>
+<div class="absolute inset-0 flex items-center justify-center">
+<span class="material-symbols-outlined text-4xl text-white opacity-0 group-hover:opacity-100 transition-opacity cursor-pointer">play_circle</span>
+</div>
+<div class="absolute bottom-2 left-2 right-2 flex flex-col gap-1">
+<div class="h-1 bg-slate-800 rounded-full w-full overflow-hidden">
+<div class="h-full bg-blue-500 w-1/3"></div>
+</div>
+</div>
+</div>
+</div>
+<div class="space-y-4">
+<h3 class="text-[10px] font-bold uppercase tracking-widest text-slate-500">Project Stats</h3>
+<div class="grid grid-cols-2 gap-3">
+<div class="p-3 bg-slate-800/40 rounded-lg border border-slate-800">
+<span class="text-[10px] text-slate-500 block mb-1">Characters</span>
+<span class="text-sm font-bold text-white">4,812</span>
+</div>
+<div class="p-3 bg-slate-800/40 rounded-lg border border-slate-800">
+<span class="text-[10px] text-slate-500 block mb-1">Duration</span>
+<span class="text-sm font-bold text-white">08:24</span>
+</div>
+<div class="p-3 bg-slate-800/40 rounded-lg border border-slate-800">
+<span class="text-[10px] text-slate-500 block mb-1">Translated</span>
+<span class="text-sm font-bold text-blue-400">72%</span>
+</div>
+<div class="p-3 bg-slate-800/40 rounded-lg border border-slate-800">
+<span class="text-[10px] text-slate-500 block mb-1">Blocks</span>
+<span class="text-sm font-bold text-white">124</span>
+</div>
+</div>
+</div>
+<div class="mt-auto space-y-4">
+<div class="p-4 bg-blue-600/5 rounded-xl border border-blue-500/20">
+<div class="flex items-center gap-2 mb-2">
+<span class="material-symbols-outlined text-blue-400 text-sm">info</span>
+<span class="text-xs font-bold text-blue-100">AI Enhancement Available</span>
+</div>
+<p class="text-[11px] text-slate-400 leading-relaxed mb-3">Improve phrasing based on speaker emotional tone analysis.</p>
+<button class="w-full py-2 bg-blue-600/20 text-blue-400 text-[11px] font-bold rounded-lg hover:bg-blue-600/30 transition-all uppercase tracking-wider">Run Analysis</button>
+</div>
+</div>
+</div>
+</section>
+</main>
+<!-- Navigation Overlay / Status Bar -->
+<div class="fixed bottom-0 left-64 right-0 h-8 bg-slate-900/80 backdrop-blur-md border-t border-slate-800/50 px-6 flex items-center justify-between z-50">
+<div class="flex items-center gap-4">
+<div class="flex items-center gap-2 text-[10px] text-slate-500 font-mono">
+<span class="w-2 h-2 rounded-full bg-green-500 animate-pulse"></span>
+                CONNECTED
+            </div>
+<div class="text-[10px] text-slate-600 font-mono">UTF-8</div>
+<div class="text-[10px] text-slate-600 font-mono">LN 42, COL 12</div>
+</div>
+<div class="flex items-center gap-4 text-[10px] text-slate-500">
+<span class="hover:text-blue-400 cursor-pointer">Keyboard Shortcuts</span>
+<span class="hover:text-blue-400 cursor-pointer">Support</span>
+</div>
+</div>
+</body></html>

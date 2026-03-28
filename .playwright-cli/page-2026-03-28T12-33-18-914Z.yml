@@ -1,0 +1,149 @@
+- generic [ref=e3]:
+  - banner [ref=e4]:
+    - generic [ref=e5]:
+      - generic [ref=e6]:
+        - img [ref=e8]
+        - generic [ref=e12]:
+          - generic [ref=e13]: Translation-App
+          - generic [ref=e14]: Japanese Subtitle Control Room
+      - button "Load Sample" [ref=e15]:
+        - img [ref=e16]
+        - text: Load Sample
+  - main [ref=e18]:
+    - generic [ref=e19]:
+      - generic [ref=e20]:
+        - generic [ref=e21]:
+          - generic [ref=e22]: Performance first
+          - generic [ref=e23]: Japanese to Korean
+        - heading "느린 번역 화면을 더 빠르게 느껴지는 작업 콘솔로 바꿨습니다." [level=1] [ref=e24]:
+          - text: 느린 번역 화면을
+          - text: 더 빠르게 느껴지는
+          - text: 작업 콘솔로 바꿨습니다.
+        - paragraph [ref=e25]: 일본어 자막 업로드부터 번역 실행, 결과 비교와 내려받기까지 한 화면에서 읽히도록 재구성했습니다. 지금 상태, 남은 파일, 전체 블록 수가 바로 보여서 작업자가 기다리는 시간을 덜 답답하게 느끼도록 설계했습니다.
+        - generic [ref=e26]:
+          - generic [ref=e27]:
+            - generic [ref=e28]: Files
+            - generic [ref=e29]: "0"
+            - generic [ref=e30]: 0 completed / 0 pending
+          - generic [ref=e31]:
+            - generic [ref=e32]: Blocks
+            - generic [ref=e33]: "0"
+            - generic [ref=e34]: Subtitle units ready for processing
+          - generic [ref=e35]:
+            - generic [ref=e36]: Translation lane
+            - generic [ref=e37]: Standby
+            - generic [ref=e38]: Parallel file and chunk processing enabled
+      - generic [ref=e39]:
+        - generic [ref=e40]:
+          - generic [ref=e41]: Current mode
+          - generic [ref=e42]:
+            - generic [ref=e43]: natural
+            - img [ref=e44]
+            - generic [ref=e46]: Speaker tags kept
+          - generic [ref=e47]: 기본 프롬프트를 가볍게 두고, 필요한 경우만 강한 커스텀 프롬프트를 올리는 구조에 맞춰 화면을 정리했습니다.
+        - generic [ref=e48]:
+          - generic [ref=e49]: Operator notes
+          - list [ref=e50]:
+            - listitem [ref=e51]: 업로드와 결과 비교를 같은 작업 루프 안에서 보이게 유지
+            - listitem [ref=e52]: 번역 중 상태를 숫자와 진행률로 드러내서 대기 시간을 관리
+            - listitem [ref=e53]: 완료된 파일은 즉시 복사 또는 내려받기 가능하게 고정
+    - generic [ref=e54]:
+      - generic [ref=e55]:
+        - generic [ref=e56]:
+          - generic [ref=e57]: Workspace setup
+          - heading "Upload, tune, run" [level=2] [ref=e58]
+          - paragraph [ref=e59]: 작업 대상과 번역 정책을 먼저 결정하고, 그다음 결과 화면으로 자연스럽게 이어지도록 구성했습니다.
+        - generic [ref=e60]:
+          - heading "1. Upload" [level=2] [ref=e61]:
+            - img [ref=e62]
+            - text: 1. Upload
+          - generic [ref=e65]:
+            - button "Choose File" [ref=e66]
+            - img [ref=e67]
+            - paragraph [ref=e70]: Drag & drop subtitle files
+            - paragraph [ref=e71]: Supports .srt, .vtt, .txt
+        - generic [ref=e72]:
+          - heading "2. Options" [level=2] [ref=e73]:
+            - img [ref=e74]
+            - text: 2. Options
+          - generic [ref=e77]:
+            - generic [ref=e78]:
+              - text: Source
+              - combobox [ref=e79]:
+                - option "Auto Detect"
+                - option "Korean"
+                - option "English"
+                - option "Japanese" [selected]
+                - option "Chinese"
+                - option "Spanish"
+                - option "French"
+                - option "German"
+            - generic [ref=e80]:
+              - text: Target
+              - combobox [ref=e81]:
+                - option "Korean" [selected]
+                - option "English"
+                - option "Japanese"
+                - option "Chinese"
+                - option "Spanish"
+                - option "French"
+                - option "German"
+          - generic [ref=e82]:
+            - text: Mode
+            - generic [ref=e83]:
+              - button "Literal (직역) 원문의 구조를 최대한 유지" [ref=e84]:
+                - generic [ref=e85]: Literal (직역)
+                - generic [ref=e86]: 원문의 구조를 최대한 유지
+              - button "Natural (자연 번역) 문맥에 맞는 자연스러운 표현" [ref=e87]:
+                - generic [ref=e88]: Natural (자연 번역)
+                - generic [ref=e89]: 문맥에 맞는 자연스러운 표현
+              - button "Optimized (자막 최적화) 가독성과 길이 최적화" [ref=e90]:
+                - generic [ref=e91]: Optimized (자막 최적화)
+                - generic [ref=e92]: 가독성과 길이 최적화
+          - generic [ref=e93]:
+            - text: Prompt
+            - textbox [ref=e94]: "아래 자막을 번역하세요. 규칙: 1. 자막 번호와 타임코드는 유지하세요. 2. 의미를 왜곡하지 마세요. 3. 자막 길이는 읽기 쉬운 길이로 다듬으세요. 4. 고유명사, 브랜드명, 인명은 문맥에 맞게 처리하세요. 5. 욕설, 은어, 문화 표현은 자연스러운 현지 표현으로 바꾸되 과도하게 순화하지 마세요. 6. 노래 가사, 효과음, 배경음 표기는 가능한 한 자막 관례에 맞게 번역하세요. 7. 출력은 입력과 동일한 자막 형식을 유지하세요."
+          - generic [ref=e95]:
+            - generic [ref=e96] [cursor=pointer]:
+              - checkbox "Keep Speaker Names (e.g. [Name]:)" [checked] [ref=e97]
+              - generic [ref=e98]: Keep Speaker Names (e.g. [Name]:)
+            - generic [ref=e99] [cursor=pointer]:
+              - checkbox "Translate Sound Effects (e.g. (Music))" [checked] [ref=e100]
+              - generic [ref=e101]: Translate Sound Effects (e.g. (Music))
+          - generic [ref=e102]:
+            - button "Translate All" [disabled] [ref=e103]:
+              - img [ref=e104]
+              - text: Translate All
+            - button [ref=e109]:
+              - img [ref=e110]
+      - generic [ref=e116]:
+        - generic [ref=e117]:
+          - generic [ref=e118]:
+            - generic [ref=e119]: Live output
+            - generic [ref=e120]: Translation preview
+          - generic [ref=e121]:
+            - button "Source" [ref=e122]:
+              - img [ref=e123]
+              - text: Source
+            - button "Translated" [ref=e126]:
+              - img [ref=e127]
+              - text: Translated
+            - button "Compare" [ref=e130]:
+              - img [ref=e131]
+              - text: Compare
+          - generic [ref=e133]:
+            - button "Copy to clipboard" [disabled] [ref=e134]:
+              - img [ref=e135]
+            - button ".SRT" [disabled] [ref=e139]:
+              - img [ref=e140]
+              - text: .SRT
+            - button ".TXT" [disabled] [ref=e144]:
+              - img [ref=e145]
+              - text: .TXT
+        - generic [ref=e149]:
+          - img [ref=e151]
+          - heading "No Subtitles Loaded" [level=3] [ref=e154]
+          - paragraph [ref=e155]: 샘플을 불러오거나 실제 일본어 자막을 업로드하면, 여기서 원문과 번역문을 빠르게 비교할 수 있습니다.
+    - generic [ref=e156]:
+      - generic [ref=e157]: Translation Control Room
+      - paragraph [ref=e158]: 업로드, 번역, 비교, 내려받기 흐름을 한 번에 읽히게 만드는 작업 콘솔로 정리했습니다. 다음 단계는 실제 긴 일본어 자막으로 체감 속도와 가독성을 확인하는 것입니다.

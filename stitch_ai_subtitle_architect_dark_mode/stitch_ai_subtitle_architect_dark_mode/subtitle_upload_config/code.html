@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Architect Editor | Subtitle Configuration</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;600;700;800&amp;family=Inter:wght@400;500;600&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              "surface-container": "#eceef0",
+              "primary-fixed": "#dce1ff",
+              "surface": "#f7f9fb",
+              "tertiary": "#180500",
+              "surface-container-high": "#e6e8ea",
+              "on-surface": "#191c1e",
+              "primary": "#00072a",
+              "on-primary": "#ffffff",
+              "surface-dim": "#d8dadc",
+              "on-tertiary": "#ffffff",
+              "secondary-container": "#b6d0ff",
+              "background": "#f7f9fb",
+              "primary-fixed-dim": "#b6c4ff",
+              "on-secondary-container": "#3f5881",
+              "surface-container-low": "#f2f4f6",
+              "on-secondary-fixed": "#001b3d",
+              "primary-container": "#001a5e",
+              "secondary-fixed-dim": "#aec7f6",
+              "on-primary-fixed-variant": "#0039b3",
+              "on-tertiary-fixed-variant": "#6c391d",
+              "outline-variant": "#c4c6cf",
+              "on-secondary-fixed-variant": "#2d476f",
+              "on-primary-container": "#5b80ff",
+              "on-background": "#191c1e",
+              "outline": "#74777f",
+              "on-secondary": "#ffffff",
+              "error": "#ba1a1a",
+              "on-surface-variant": "#44474e",
+              "secondary-fixed": "#d6e3ff",
+              "on-tertiary-container": "#b97958",
+              "error-container": "#ffdad6",
+              "surface-tint": "#004dea",
+              "on-error": "#ffffff",
+              "on-tertiary-fixed": "#341100",
+              "inverse-on-surface": "#eff1f3",
+              "inverse-primary": "#b6c4ff",
+              "surface-container-highest": "#e0e3e5",
+              "surface-bright": "#f7f9fb",
+              "on-error-container": "#93000a",
+              "on-primary-fixed": "#001551",
+              "inverse-surface": "#2d3133",
+              "surface-variant": "#e0e3e5",
+              "tertiary-container": "#3d1500",
+              "secondary": "#465f88",
+              "tertiary-fixed-dim": "#ffb691",
+              "tertiary-fixed": "#ffdbcb",
+              "surface-container-lowest": "#ffffff"
+            },
+            fontFamily: {
+              "headline": ["Manrope"],
+              "body": ["Inter"],
+              "label": ["Inter"]
+            },
+            borderRadius: {"DEFAULT": "0rem", "lg": "0rem", "xl": "0rem", "full": "9999px"},
+          },
+        },
+      }
+    </script>
+<style>
+      .material-symbols-outlined {
+        font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+      }
+      .no-scrollbar::-webkit-scrollbar { display: none; }
+      body { -webkit-font-smoothing: antialiased; }
+    </style>
+</head>
+<body class="bg-surface font-body text-on-surface flex min-h-screen">
+<!-- SideNavBar Anchor -->
+<aside class="h-screen sticky left-0 bg-[#f2f4f6] text-[#002147] flex flex-col w-64 p-6 gap-8 z-50">
+<div class="flex flex-col gap-1">
+<span class="text-lg font-black text-[#002147] tracking-tighter uppercase">Architect Editor</span>
+<div class="mt-4 flex items-center gap-3 p-3 bg-[#e0e3e5] rounded-none">
+<div class="w-8 h-8 bg-primary flex items-center justify-center text-white text-xs font-bold">PA</div>
+<div class="flex flex-col">
+<span class="font-inter text-[11px] uppercase tracking-[0.05em] font-bold text-[#002147]">Project Alpha</span>
+<span class="font-inter text-[10px] text-slate-500">V2.4 Editing</span>
+</div>
+</div>
+</div>
+<nav class="flex flex-col gap-2 flex-grow">
+<!-- Editor is active per prompt -->
+<a class="bg-white text-[#002147] shadow-sm font-bold flex items-center gap-3 p-3 transition-all scale-95 duration-150" href="#">
+<span class="material-symbols-outlined" data-icon="edit_note">edit_note</span>
+<span class="font-inter text-[11px] uppercase tracking-[0.05em] font-medium">Editor</span>
+</a>
+<a class="text-slate-500 hover:bg-[#e0e3e5] flex items-center gap-3 p-3 transition-all" href="#">
+<span class="material-symbols-outlined" data-icon="view_timeline">view_timeline</span>
+<span class="font-inter text-[11px] uppercase tracking-[0.05em] font-medium">Timeline</span>
+</a>
+<a class="text-slate-500 hover:bg-[#e0e3e5] flex items-center gap-3 p-3 transition-all" href="#">
+<span class="material-symbols-outlined" data-icon="translate">translate</span>
+<span class="font-inter text-[11px] uppercase tracking-[0.05em] font-medium">Translation</span>
+</a>
+<a class="text-slate-500 hover:bg-[#e0e3e5] flex items-center gap-3 p-3 transition-all" href="#">
+<span class="material-symbols-outlined" data-icon="format_paint">format_paint</span>
+<span class="font-inter text-[11px] uppercase tracking-[0.05em] font-medium">Styles</span>
+</a>
+<a class="text-slate-500 hover:bg-[#e0e3e5] flex items-center gap-3 p-3 transition-all" href="#">
+<span class="material-symbols-outlined" data-icon="output">output</span>
+<span class="font-inter text-[11px] uppercase tracking-[0.05em] font-medium">Deliverables</span>
+</a>
+</nav>
+<div class="mt-auto flex flex-col gap-2 pt-6 border-t border-[#e0e3e5]">
+<button class="bg-primary text-white py-3 px-4 font-inter text-[11px] uppercase tracking-widest font-bold mb-4 hover:opacity-90 transition-opacity">
+                New Sequence
+            </button>
+<a class="text-slate-500 hover:bg-[#e0e3e5] flex items-center gap-3 p-2 transition-all" href="#">
+<span class="material-symbols-outlined" data-icon="help">help</span>
+<span class="font-inter text-[11px] uppercase tracking-[0.05em] font-medium">Help Center</span>
+</a>
+<a class="text-slate-500 hover:bg-[#e0e3e5] flex items-center gap-3 p-2 transition-all" href="#">
+<span class="material-symbols-outlined" data-icon="account_circle">account_circle</span>
+<span class="font-inter text-[11px] uppercase tracking-[0.05em] font-medium">Account</span>
+</a>
+</div>
+</aside>
+<div class="flex-grow flex flex-col">
+<!-- TopAppBar Anchor -->
+<header class="w-full sticky top-0 z-40 bg-[#f7f9fb] flex justify-between items-center px-8 py-4">
+<div class="flex items-center gap-4">
+<h1 class="text-xl font-bold tracking-tighter text-[#002147] font-headline">Project Alpha <span class="text-slate-400 font-light mx-2">/</span> <span class="font-medium text-slate-600">Setup</span></h1>
+</div>
+<div class="hidden md:flex gap-8 items-center">
+<a class="font-manrope text-sm font-semibold tracking-tight text-slate-500 hover:text-[#002147]" href="#">Projects</a>
+<a class="font-manrope text-sm font-semibold tracking-tight text-slate-500 hover:text-[#002147]" href="#">Team</a>
+<a class="font-manrope text-sm font-semibold tracking-tight text-slate-500 hover:text-[#002147]" href="#">Glossary</a>
+</div>
+<div class="flex items-center gap-4">
+<div class="flex gap-2 mr-4 border-r border-[#e0e3e5] pr-4">
+<button class="p-2 text-slate-500 hover:bg-[#e0e3e5]/50 transition-colors"><span class="material-symbols-outlined" data-icon="history">history</span></button>
+<button class="p-2 text-slate-500 hover:bg-[#e0e3e5]/50 transition-colors"><span class="material-symbols-outlined" data-icon="settings">settings</span></button>
+</div>
+<button class="px-4 py-2 text-sm font-semibold text-slate-600 hover:text-primary transition-colors">Save Draft</button>
+<button class="px-5 py-2 text-sm font-bold bg-[#002147] text-white tracking-tight hover:opacity-90 transition-all active:scale-95">Export</button>
+</div>
+</header>
+<!-- Main Content Area -->
+<main class="flex-grow p-12 lg:px-24 max-w-7xl mx-auto w-full">
+<div class="mb-12">
+<h2 class="font-headline text-4xl font-extrabold tracking-tight text-primary mb-2">Subtitle Configuration</h2>
+<p class="text-on-surface-variant font-body">Initialize your translation workspace by uploading assets and defining linguistic parameters.</p>
+</div>
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-16">
+<!-- Left Column: Upload & Options -->
+<div class="lg:col-span-7 space-y-12">
+<!-- Upload Section -->
+<section>
+<label class="font-label text-[11px] uppercase tracking-[0.1em] font-bold text-slate-400 block mb-4">01. Upload Subtitles</label>
+<div class="group relative border-2 border-dashed border-outline-variant hover:border-primary transition-colors h-64 bg-surface-container-low flex flex-col items-center justify-center p-8 cursor-pointer">
+<span class="material-symbols-outlined text-4xl text-outline mb-4 group-hover:text-primary transition-colors" data-icon="upload_file">upload_file</span>
+<p class="font-headline font-bold text-primary text-lg">Drop your architectural script here</p>
+<p class="text-on-surface-variant text-sm mt-1">Supports .srt, .vtt, .txt (Max 50MB)</p>
+<button class="mt-6 px-6 py-2 bg-white text-primary font-bold text-xs uppercase tracking-widest border border-outline-variant hover:bg-surface-container-high transition-colors">Browse Files</button>
+</div>
+</section>
+<!-- Translation Options -->
+<section>
+<label class="font-label text-[11px] uppercase tracking-[0.1em] font-bold text-slate-400 block mb-4">02. Translation Options</label>
+<div class="grid grid-cols-2 gap-6">
+<div class="space-y-2">
+<span class="text-[10px] font-bold uppercase text-on-surface-variant ml-1">Source Language</span>
+<div class="relative">
+<select class="w-full bg-surface-container-lowest border-none appearance-none px-4 py-4 text-sm font-medium focus:ring-0 cursor-pointer">
+<option>English (US)</option>
+<option>English (UK)</option>
+<option>Spanish</option>
+</select>
+<span class="material-symbols-outlined absolute right-4 top-1/2 -translate-y-1/2 pointer-events-none text-slate-400" data-icon="expand_more">expand_more</span>
+</div>
+</div>
+<div class="space-y-2">
+<span class="text-[10px] font-bold uppercase text-on-surface-variant ml-1">Target Language</span>
+<div class="relative">
+<select class="w-full bg-surface-container-lowest border-none appearance-none px-4 py-4 text-sm font-medium focus:ring-0 cursor-pointer">
+<option>Korean (KO)</option>
+<option>Japanese (JP)</option>
+<option>Mandarin (CN)</option>
+</select>
+<span class="material-symbols-outlined absolute right-4 top-1/2 -translate-y-1/2 pointer-events-none text-slate-400" data-icon="expand_more">expand_more</span>
+</div>
+</div>
+</div>
+</section>
+<!-- Custom Prompt -->
+<section>
+<label class="font-label text-[11px] uppercase tracking-[0.1em] font-bold text-slate-400 block mb-4">04. Custom AI Instructions</label>
+<textarea class="w-full h-32 bg-surface-container-lowest border-none p-6 text-sm font-body placeholder:text-slate-300 focus:ring-0" placeholder="e.g. 'Use formal honorifics suitable for a documentary' or 'Maintain technical terminology for civil engineering'"></textarea>
+</section>
+</div>
+<!-- Right Column: Mode & Preferences -->
+<div class="lg:col-span-5 space-y-12">
+<!-- Translation Mode -->
+<section>
+<label class="font-label text-[11px] uppercase tracking-[0.1em] font-bold text-slate-400 block mb-4">03. Translation Mode</label>
+<div class="flex flex-col gap-3">
+<label class="flex items-start gap-4 p-5 bg-surface-container-lowest hover:bg-white cursor-pointer transition-all border-l-4 border-transparent hover:border-primary group">
+<input checked="" class="mt-1 text-primary focus:ring-0 border-outline" name="mode" type="radio"/>
+<div>
+<span class="block font-headline font-bold text-primary text-sm uppercase tracking-wide">Literal</span>
+<span class="block text-xs text-on-surface-variant mt-1 leading-relaxed">Direct word-for-word translation. Best for technical manuals and legal scripts.</span>
+</div>
+</label>
+<label class="flex items-start gap-4 p-5 bg-surface-container-lowest hover:bg-white cursor-pointer transition-all border-l-4 border-transparent hover:border-primary group">
+<input class="mt-1 text-primary focus:ring-0 border-outline" name="mode" type="radio"/>
+<div>
+<span class="block font-headline font-bold text-primary text-sm uppercase tracking-wide">Natural</span>
+<span class="block text-xs text-on-surface-variant mt-1 leading-relaxed">Prioritizes conversational flow and idioms. Best for film and television.</span>
+</div>
+</label>
+<label class="flex items-start gap-4 p-5 bg-surface-container-lowest hover:bg-white cursor-pointer transition-all border-l-4 border-transparent hover:border-primary group">
+<input class="mt-1 text-primary focus:ring-0 border-outline" name="mode" type="radio"/>
+<div>
+<span class="block font-headline font-bold text-primary text-sm uppercase tracking-wide">Optimized</span>
+<span class="block text-xs text-on-surface-variant mt-1 leading-relaxed">Balances reading speed and character limits. Ideal for fast-paced content.</span>
+</div>
+</label>
+</div>
+</section>
+<!-- Preferences -->
+<section>
+<label class="font-label text-[11px] uppercase tracking-[0.1em] font-bold text-slate-400 block mb-4">05. Preferences</label>
+<div class="space-y-4">
+<label class="flex items-center gap-3 cursor-pointer group">
+<input checked="" class="w-5 h-5 rounded-none border-outline text-primary focus:ring-0" type="checkbox"/>
+<span class="text-sm font-medium text-primary group-hover:text-primary-tint transition-colors">Keep Speaker Names</span>
+</label>
+<label class="flex items-center gap-3 cursor-pointer group">
+<input class="w-5 h-5 rounded-none border-outline text-primary focus:ring-0" type="checkbox"/>
+<span class="text-sm font-medium text-primary group-hover:text-primary-tint transition-colors">Translate Sound Effects (SDH)</span>
+</label>
+</div>
+</section>
+<!-- Preview Card -->
+<div class="p-8 bg-primary text-white space-y-6 relative overflow-hidden">
+<div class="relative z-10">
+<h4 class="font-headline font-extrabold text-lg tracking-tight mb-2">Ready to Process</h4>
+<p class="text-primary-fixed-dim text-xs leading-relaxed mb-8">Your configuration will be applied to the architectural editor. You can refine these settings line-by-line later.</p>
+<button class="w-full py-4 bg-white text-primary font-bold uppercase tracking-widest text-xs hover:bg-surface-container transition-all active:scale-[0.98]">
+                                Proceed to Editor
+                            </button>
+</div>
+<!-- Abstract Deco -->
+<div class="absolute -right-4 -bottom-4 w-32 h-32 border border-white/10 rotate-12"></div>
+<div class="absolute -right-8 -bottom-8 w-32 h-32 border border-white/5 rotate-45"></div>
+</div>
+</div>
+</div>
+<!-- Supporting Imagery/Section Divider -->
+<div class="mt-24 grid grid-cols-2 gap-4 h-32">
+<div class="bg-surface-container-highest overflow-hidden">
+<img class="w-full h-full object-cover grayscale opacity-30" data-alt="Monochrome close-up of high-end architectural blueprint with precise lines and technical markings in soft studio light" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDF1ENAM7w8ZmGaRliGyLRlIfzF3gAPO_mjYOFEJt02R6AkmvK6Vw9Q7anNoMpEwz54IHv_umypejBNjZEM33JQHGyENcJ8j3PIg4-2kIHlgnYrCY7Om60OMH5yy6kuPHgHHqXBgh3sw-x0_OaoWsH383lcXKVJ-hMYEQ1LPUNfraVp5ENCyvcDFafiEciXoz9hbVLT5megsFHItdE_JpK8Ekv3RufkeECyGqLoylfqRVUF48fVYbYVdmlv71hahdzGyREfMq-6qhlZ"/>
+</div>
+<div class="bg-primary overflow-hidden flex items-center justify-center">
+<div class="p-8 border border-white/20 w-full h-full flex flex-col justify-center">
+<span class="text-[10px] uppercase tracking-[0.3em] text-primary-fixed-dim mb-1">Status</span>
+<span class="text-sm font-headline font-bold text-white uppercase">System Calibrated</span>
+</div>
+</div>
+</div>
+</main>
+</div>
+</body></html>

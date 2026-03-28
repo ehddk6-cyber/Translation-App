@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Architect Editor - API Settings</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&amp;family=Inter:wght@400;500;600&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "tertiary-fixed": "#ffdbcb",
+                        "on-secondary-container": "#3f5881",
+                        "surface-container-lowest": "#ffffff",
+                        "inverse-on-surface": "#eff1f3",
+                        "background": "#f7f9fb",
+                        "surface-bright": "#f7f9fb",
+                        "on-primary": "#ffffff",
+                        "inverse-surface": "#2d3133",
+                        "surface-container": "#eceef0",
+                        "on-tertiary-fixed": "#341100",
+                        "on-error": "#ffffff",
+                        "surface-container-high": "#e6e8ea",
+                        "surface-tint": "#004dea",
+                        "tertiary": "#180500",
+                        "error-container": "#ffdad6",
+                        "error": "#ba1a1a",
+                        "surface-dim": "#d8dadc",
+                        "secondary": "#465f88",
+                        "primary-container": "#001a5e",
+                        "on-tertiary-container": "#b97958",
+                        "on-surface-variant": "#44474e",
+                        "secondary-fixed": "#d6e3ff",
+                        "on-primary-fixed-variant": "#0039b3",
+                        "on-primary-fixed": "#001551",
+                        "secondary-fixed-dim": "#aec7f6",
+                        "surface-container-low": "#f2f4f6",
+                        "outline-variant": "#c4c6cf",
+                        "outline": "#74777f",
+                        "inverse-primary": "#b6c4ff",
+                        "on-secondary-fixed": "#001b3d",
+                        "on-error-container": "#93000a",
+                        "tertiary-fixed-dim": "#ffb691",
+                        "surface-container-highest": "#e0e3e5",
+                        "on-secondary": "#ffffff",
+                        "surface": "#f7f9fb",
+                        "primary-fixed-dim": "#b6c4ff",
+                        "on-tertiary": "#ffffff",
+                        "on-secondary-fixed-variant": "#2d476f",
+                        "primary-fixed": "#dce1ff",
+                        "secondary-container": "#b6d0ff",
+                        "on-primary-container": "#5b80ff",
+                        "on-tertiary-fixed-variant": "#6c391d",
+                        "primary": "#00072a",
+                        "on-background": "#191c1e",
+                        "surface-variant": "#e0e3e5",
+                        "on-surface": "#191c1e",
+                        "tertiary-container": "#3d1500"
+                    },
+                    fontFamily: {
+                        "headline": ["Manrope"],
+                        "body": ["Inter"],
+                        "label": ["Inter"]
+                    },
+                    borderRadius: {"DEFAULT": "0.125rem", "lg": "0.25rem", "xl": "0.5rem", "full": "0.75rem"},
+                },
+            },
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+            vertical-align: middle;
+        }
+        body { font-family: 'Inter', sans-serif; }
+        h1, h2, h3, .font-headline { font-family: 'Manrope', sans-serif; }
+    </style>
+</head>
+<body class="bg-background text-on-surface min-h-screen flex">
+<!-- Shared Component: SideNavBar -->
+<aside class="h-screen w-64 fixed left-0 top-0 flex flex-col p-6 bg-[#f7f9fb] dark:bg-slate-900 z-50">
+<div class="mb-10">
+<div class="flex items-center gap-3">
+<div class="w-10 h-10 bg-primary rounded-xl flex items-center justify-center text-white shadow-lg shadow-primary/20">
+<span class="material-symbols-outlined" data-icon="architecture">architecture</span>
+</div>
+<div>
+<h2 class="text-lg font-black text-[#002147] dark:text-white leading-none">Studio Alpha</h2>
+<p class="text-[10px] font-bold tracking-widest uppercase text-slate-400 mt-1">Premium Tier</p>
+</div>
+</div>
+</div>
+<nav class="flex-1 space-y-2">
+<!-- Dashboard -->
+<a class="flex items-center gap-3 px-4 py-2.5 font-manrope text-[13px] font-medium tracking-wide text-slate-500 dark:text-slate-400 hover:text-[#002147] dark:hover:text-white hover:translate-x-1 transition-transform duration-200" href="#">
+<span class="material-symbols-outlined text-[20px]" data-icon="dashboard">dashboard</span>
+                Dashboard
+            </a>
+<!-- Projects -->
+<a class="flex items-center gap-3 px-4 py-2.5 font-manrope text-[13px] font-medium tracking-wide text-slate-500 dark:text-slate-400 hover:text-[#002147] dark:hover:text-white hover:translate-x-1 transition-transform duration-200" href="#">
+<span class="material-symbols-outlined text-[20px]" data-icon="folder_open">folder_open</span>
+                Projects
+            </a>
+<!-- Settings (ACTIVE) -->
+<a class="flex items-center gap-3 px-4 py-2.5 font-manrope text-[13px] font-bold tracking-wide text-[#002147] dark:text-white bg-[#ffffff] dark:bg-slate-800 rounded-lg shadow-sm scale-[0.98]" href="#">
+<span class="material-symbols-outlined text-[20px]" data-icon="settings">settings</span>
+                Settings
+            </a>
+<!-- Account -->
+<a class="flex items-center gap-3 px-4 py-2.5 font-manrope text-[13px] font-medium tracking-wide text-slate-500 dark:text-slate-400 hover:text-[#002147] dark:hover:text-white hover:translate-x-1 transition-transform duration-200" href="#">
+<span class="material-symbols-outlined text-[20px]" data-icon="person">person</span>
+                Account
+            </a>
+</nav>
+<div class="mt-auto pt-6 border-t border-slate-200/50 dark:border-slate-800">
+<button class="w-full py-3 px-4 bg-gradient-to-br from-primary to-primary-container text-white rounded-xl font-headline text-sm font-bold flex items-center justify-center gap-2 hover:opacity-90 transition-opacity active:scale-95">
+<span class="material-symbols-outlined text-sm" data-icon="add">add</span>
+                New Project
+            </button>
+</div>
+</aside>
+<!-- Main Content Canvas -->
+<main class="flex-1 ml-64 min-h-screen bg-surface flex flex-col">
+<!-- TopAppBar (Contextual for Settings) -->
+<header class="flex justify-between items-center w-full px-12 py-8 bg-[#f7f9fb] dark:bg-slate-900">
+<div>
+<h1 class="text-3xl font-extrabold text-[#002147] dark:text-white tracking-tight">API Settings</h1>
+<p class="text-on-surface-variant/70 text-sm mt-1">Configure your translation engines and manage secure keys.</p>
+</div>
+<div class="flex items-center gap-4">
+<div class="relative group">
+<span class="material-symbols-outlined text-slate-400 group-hover:text-primary transition-colors cursor-pointer" data-icon="help_outline">help_outline</span>
+</div>
+<div class="relative group">
+<span class="material-symbols-outlined text-slate-400 group-hover:text-primary transition-colors cursor-pointer" data-icon="notifications">notifications</span>
+<span class="absolute top-0 right-0 w-2 h-2 bg-error rounded-full border-2 border-surface"></span>
+</div>
+<div class="w-10 h-10 rounded-full bg-surface-container-highest overflow-hidden cursor-pointer active:scale-95 transition-transform">
+<img alt="User profile avatar" class="w-full h-full object-cover" data-alt="Professional profile portrait of a modern software architect with neutral background" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDecLs9ymScfOzQDRZfzrHyVxWtJyq_9Dt3sndA__iie4z2zRwqXLaURXCyWYLrH6179NVvVAtJPJr54NfeCJoa0YzueB3krXCeqev-uN6af7RAK49S8tqPoQasa-V2WiJjv6TuLX0mbjAIKdfqmnyV_otTGaZ6vOOxSVNbMj1u_MjlzwGUPg9XZG8xO1bo1aMEDsZ_YXKIsIOA5Rt8Z-CSIh06bsOZENl1VzspAEKvWVlkOsVay4XQIIwr3a_4zz2Lxg-O7_hT3v6O"/>
+</div>
+</div>
+</header>
+<!-- Content Area -->
+<div class="px-12 pb-20 flex-1">
+<div class="max-w-5xl">
+<!-- Section Header -->
+<div class="mb-8 flex items-end justify-between">
+<div>
+<h2 class="text-xl font-bold text-[#002147] dark:text-white">Translation Engines Priority</h2>
+<p class="text-sm text-on-surface-variant font-medium mt-1">Drag and drop to adjust fallback order during processing.</p>
+</div>
+<button class="text-primary font-bold text-sm flex items-center gap-2 hover:underline">
+<span class="material-symbols-outlined text-sm" data-icon="refresh">refresh</span>
+                        Test Connections
+                    </button>
+</div>
+<!-- API Engines List -->
+<div class="space-y-4">
+<!-- Engine 1: Google Gemini -->
+<div class="group flex items-center gap-6 p-6 bg-surface-container-lowest rounded-xl hover:shadow-lg transition-all duration-300 border border-transparent hover:border-primary/5">
+<div class="cursor-grab active:cursor-grabbing text-slate-300 group-hover:text-slate-500">
+<span class="material-symbols-outlined" data-icon="drag_indicator">drag_indicator</span>
+</div>
+<div class="w-12 h-12 flex items-center justify-center rounded-xl bg-blue-50 text-blue-600">
+<span class="material-symbols-outlined text-3xl" data-icon="google">google</span>
+</div>
+<div class="flex-1">
+<div class="flex items-center gap-3">
+<h3 class="font-bold text-[#002147] dark:text-white">Google Gemini</h3>
+<span class="px-2 py-0.5 rounded bg-primary-container/10 text-primary-container text-[10px] font-black uppercase tracking-widest">Primary Engine</span>
+</div>
+<p class="text-xs text-on-surface-variant font-mono mt-1 opacity-80">GOOGLE_API_KEY</p>
+</div>
+<div class="flex items-center gap-4">
+<div class="bg-surface-container-low px-4 py-2 rounded-lg flex items-center gap-3">
+<span class="font-mono text-xs text-slate-500 tracking-tighter">AIzaSyAx5Y...cY_14</span>
+<div class="flex items-center gap-2 border-l border-slate-300 pl-3">
+<button class="text-slate-400 hover:text-primary transition-colors"><span class="material-symbols-outlined text-[18px]" data-icon="content_copy">content_copy</span></button>
+<button class="text-slate-400 hover:text-primary transition-colors"><span class="material-symbols-outlined text-[18px]" data-icon="edit">edit</span></button>
+</div>
+</div>
+<div class="flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-emerald-50 text-emerald-700 text-xs font-bold">
+<span class="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse"></span>
+                                Connected
+                            </div>
+</div>
+</div>
+<!-- Engine 2: OpenRouter -->
+<div class="group flex items-center gap-6 p-6 bg-surface-container-lowest rounded-xl hover:shadow-lg transition-all duration-300 border border-transparent hover:border-primary/5">
+<div class="cursor-grab active:cursor-grabbing text-slate-300 group-hover:text-slate-500">
+<span class="material-symbols-outlined" data-icon="drag_indicator">drag_indicator</span>
+</div>
+<div class="w-12 h-12 flex items-center justify-center rounded-xl bg-purple-50 text-purple-600">
+<span class="material-symbols-outlined text-3xl" data-icon="hub">hub</span>
+</div>
+<div class="flex-1">
+<div class="flex items-center gap-3">
+<h3 class="font-bold text-[#002147] dark:text-white">OpenRouter</h3>
+<span class="px-2 py-0.5 rounded bg-slate-100 text-slate-500 text-[10px] font-black uppercase tracking-widest">Backup Engine</span>
+</div>
+<p class="text-xs text-on-surface-variant font-mono mt-1 opacity-80">OPENROUTER_API_KEY</p>
+</div>
+<div class="flex items-center gap-4">
+<div class="bg-surface-container-low px-4 py-2 rounded-lg flex items-center gap-3">
+<span class="font-mono text-xs text-slate-500 tracking-tighter">sk-or-v1-2b75...c704</span>
+<div class="flex items-center gap-2 border-l border-slate-300 pl-3">
+<button class="text-slate-400 hover:text-primary transition-colors"><span class="material-symbols-outlined text-[18px]" data-icon="content_copy">content_copy</span></button>
+<button class="text-slate-400 hover:text-primary transition-colors"><span class="material-symbols-outlined text-[18px]" data-icon="edit">edit</span></button>
+</div>
+</div>
+<div class="flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-emerald-50 text-emerald-700 text-xs font-bold">
+<span class="w-1.5 h-1.5 rounded-full bg-emerald-500"></span>
+                                Active
+                            </div>
+</div>
+</div>
+<!-- Engine 3: Groq -->
+<div class="group flex items-center gap-6 p-6 bg-surface-container-lowest rounded-xl hover:shadow-lg transition-all duration-300 border border-transparent hover:border-primary/5">
+<div class="cursor-grab active:cursor-grabbing text-slate-300 group-hover:text-slate-500">
+<span class="material-symbols-outlined" data-icon="drag_indicator">drag_indicator</span>
+</div>
+<div class="w-12 h-12 flex items-center justify-center rounded-xl bg-orange-50 text-orange-600">
+<span class="material-symbols-outlined text-3xl" data-icon="bolt">bolt</span>
+</div>
+<div class="flex-1">
+<div class="flex items-center gap-3">
+<h3 class="font-bold text-[#002147] dark:text-white">Groq</h3>
+<span class="px-2 py-0.5 rounded bg-slate-100 text-slate-500 text-[10px] font-black uppercase tracking-widest">Backup Engine</span>
+</div>
+<p class="text-xs text-on-surface-variant font-mono mt-1 opacity-80">GROQ_API_KEY</p>
+</div>
+<div class="flex items-center gap-4">
+<div class="bg-surface-container-low px-4 py-2 rounded-lg flex items-center gap-3">
+<span class="font-mono text-xs text-slate-500 tracking-tighter">gsk_xyyC8S...E6z7</span>
+<div class="flex items-center gap-2 border-l border-slate-300 pl-3">
+<button class="text-slate-400 hover:text-primary transition-colors"><span class="material-symbols-outlined text-[18px]" data-icon="content_copy">content_copy</span></button>
+<button class="text-slate-400 hover:text-primary transition-colors"><span class="material-symbols-outlined text-[18px]" data-icon="edit">edit</span></button>
+</div>
+</div>
+<div class="flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-emerald-50 text-emerald-700 text-xs font-bold">
+<span class="w-1.5 h-1.5 rounded-full bg-emerald-500"></span>
+                                Active
+                            </div>
+</div>
+</div>
+<!-- Engine 4: GLM / Zhipu AI -->
+<div class="group flex items-center gap-6 p-6 bg-surface-container-lowest rounded-xl hover:shadow-lg transition-all duration-300 border border-transparent hover:border-primary/5">
+<div class="cursor-grab active:cursor-grabbing text-slate-300 group-hover:text-slate-500">
+<span class="material-symbols-outlined" data-icon="drag_indicator">drag_indicator</span>
+</div>
+<div class="w-12 h-12 flex items-center justify-center rounded-xl bg-slate-100 text-slate-700">
+<span class="material-symbols-outlined text-3xl" data-icon="language">language</span>
+</div>
+<div class="flex-1">
+<div class="flex items-center gap-3">
+<h3 class="font-bold text-[#002147] dark:text-white">GLM / Zhipu AI</h3>
+<span class="px-2 py-0.5 rounded bg-slate-100 text-slate-500 text-[10px] font-black uppercase tracking-widest">Backup Engine</span>
+</div>
+<p class="text-xs text-on-surface-variant font-mono mt-1 opacity-80">GLM_API_KEY</p>
+</div>
+<div class="flex items-center gap-4">
+<div class="bg-surface-container-low px-4 py-2 rounded-lg flex items-center gap-3">
+<span class="font-mono text-xs text-slate-500 tracking-tighter">7fe2eb7160...M1GcU</span>
+<div class="flex items-center gap-2 border-l border-slate-300 pl-3">
+<button class="text-slate-400 hover:text-primary transition-colors"><span class="material-symbols-outlined text-[18px]" data-icon="content_copy">content_copy</span></button>
+<button class="text-slate-400 hover:text-primary transition-colors"><span class="material-symbols-outlined text-[18px]" data-icon="edit">edit</span></button>
+</div>
+</div>
+<div class="flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-amber-50 text-amber-700 text-xs font-bold">
+<span class="w-1.5 h-1.5 rounded-full bg-amber-500"></span>
+                                Validating
+                            </div>
+</div>
+</div>
+</div>
+<!-- Usage Policy / Footer Callout -->
+<div class="mt-12 p-8 rounded-xl bg-primary/5 border border-primary/10 flex items-start gap-6">
+<div class="w-12 h-12 flex-shrink-0 bg-primary text-white rounded-lg flex items-center justify-center">
+<span class="material-symbols-outlined" data-icon="security">security</span>
+</div>
+<div>
+<h4 class="font-bold text-[#002147]">Zero-Retention Key Policy</h4>
+<p class="text-sm text-slate-600 mt-2 leading-relaxed">Architect Editor never stores your API keys on our servers. All keys are encrypted locally within your browser's persistent storage or managed via your secure workspace bridge. Use environment variables for team-wide deployment.</p>
+<div class="mt-4 flex gap-4">
+<button class="text-xs font-bold text-primary hover:underline">Learn more about security</button>
+<button class="text-xs font-bold text-primary hover:underline">Setup Team Bridge</button>
+</div>
+</div>
+</div>
+<!-- Floating Save Action (Editorial Style) -->
+<div class="mt-12 flex justify-end items-center gap-6">
+<span class="text-sm text-slate-400 font-medium italic">All changes are automatically synced to workspace.</span>
+<button class="px-8 py-3 bg-primary text-white rounded-lg font-headline font-bold text-sm shadow-xl shadow-primary/20 hover:scale-[1.02] active:scale-95 transition-all">
+                        Update Priority Map
+                    </button>
+</div>
+</div>
+</div>
+</main>
+</body></html>

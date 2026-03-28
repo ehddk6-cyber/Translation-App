@@ -1,0 +1,98 @@
+# Design System Specification: High-End Editorial SaaS
+
+## 1. Overview & Creative North Star
+
+### The Creative North Star: "The Architectural Editor"
+This design system moves beyond the standard SaaS "dashboard" look to embrace the precision of architectural blueprints combined with high-end editorial layouts. It is designed to feel like a premium workstation for a professional architect of language. 
+
+By leveraging **intentional asymmetry**, extreme **white space**, and **tonal depth**, we eliminate the generic "AI generator" feel. Instead of a flat interface that merely outputs data, this system creates a gallery-like environment where subtitles are treated as primary artifacts. The interface should feel "quiet" to allow the user’s work to speak loudest.
+
+---
+
+## 2. Colors & Surface Philosophy
+
+The color palette is rooted in a deep navy foundation with a crisp, high-contrast light mode that emphasizes clarity.
+
+### The "No-Line" Rule
+**Explicit Instruction:** Traditional 1px solid borders are prohibited for sectioning. Structural boundaries must be defined solely through background color shifts or tonal transitions.
+- Use `surface` (`#f7f9fb`) as the base.
+- Use `surface_container_low` (`#f2f4f6`) for secondary sections.
+- Use `surface_container_highest` (`#e0e3e5`) to denote interaction or focus areas.
+
+### Surface Hierarchy & Nesting
+Treat the UI as a series of stacked, premium materials. 
+- **Base Layer:** `surface`
+- **In-Page Containers:** `surface_container_low`
+- **Floating Cards/Active Elements:** `surface_container_lowest` (Pure White `#ffffff`) 
+This "Lowest on Low" nesting creates a natural lift that signals priority without the clutter of lines.
+
+### Glass & Gradients
+- **Glassmorphism:** For floating menus or status overlays, use `surface_container_lowest` at 80% opacity with a `24px` backdrop blur.
+- **Signature Textures:** Main CTAs should not be flat. Apply a subtle linear gradient from `primary` (`#00072a`) to `primary_container` (`#001a5e`) at a 135-degree angle to provide a sense of "weight" and premium craftsmanship.
+
+---
+
+## 3. Typography
+
+The system utilizes a dual-font strategy to balance technical precision with editorial authority.
+
+*   **Display & Headlines (Manrope):** Used to establish an authoritative, "architectural" tone. 
+    *   `display-lg` (3.5rem): Used for hero moments and empty states.
+    *   `headline-sm` (1.5rem): Used for primary section headers.
+*   **Body & UI (Inter):** Used for utility, subtitles, and high-readability data.
+    *   `body-md` (0.875rem): The workhorse for subtitle editing.
+    *   `label-sm` (0.6875rem): All-caps with increased letter spacing (0.05em) for technical metadata.
+
+**Hierarchy Rule:** Always maintain a 2:1 ratio of white space to text height in headers to ensure the "Editorial" breathing room.
+
+---
+
+## 4. Elevation & Depth
+
+We achieve hierarchy through **Tonal Layering** rather than structural shadows.
+
+*   **The Layering Principle:** Place a `surface_container_lowest` card on a `surface_container_low` background. This creates a "soft lift" that feels integrated into the architecture.
+*   **Ambient Shadows:** For "floating" components (modals/tooltips), use a multi-layered shadow:
+    *   `box-shadow: 0 4px 20px rgba(0, 7, 42, 0.04), 0 12px 40px rgba(0, 7, 42, 0.08);`
+    *   The shadow color must be a tinted version of `primary` to mimic natural light hitting deep navy materials.
+*   **The Ghost Border:** If accessibility requires a stroke, use `outline_variant` (`#c4c6cf`) at **20% opacity**. It should be felt, not seen.
+*   **Corner Radii:** Strictly adhere to the scale. 
+    *   `xl` (0.75rem / 12px) for main containers and cards.
+    *   `lg` (0.5rem / 8px) for buttons and input fields.
+
+---
+
+## 5. Components
+
+### Primary Buttons
+- **Style:** Gradient (`primary` to `primary_container`), `on_primary` text.
+- **State:** On hover, shift the gradient 45 degrees. On active, scale to 98%.
+- **Padding:** `spacing.3` (top/bottom) by `spacing.6` (left/right).
+
+### Input Fields & Text Areas
+- **Style:** Background `surface_container_lowest`, no border.
+- **Focus State:** A subtle "Ghost Border" of `primary` at 20% and a 4px soft glow using `primary_fixed`.
+- **Placeholder:** `on_surface_variant` at 50% opacity.
+
+### Navigation & Chips
+- **Selection Chips:** Use `secondary_container` with `on_secondary_container` text. Avoid the "pill" look; use the `lg` (8px) radius to maintain the architectural theme.
+- **Forbid:** Vertical dividers between list items. Use `spacing.3.5` (1.2rem) of vertical white space to separate subtitle blocks.
+
+### The "Subtitle Block" (Custom Component)
+- **Structure:** A `surface_container_low` wrapper with an asymmetric layout. Source text on the left, translated text in a `surface_container_lowest` "focus" box on the right. 
+- **Depth:** No borders. The active block receives a `primary` left-accent bar (3px width) to indicate focus.
+
+---
+
+## 6. Do's and Don'ts
+
+### Do
+- **Do** use `spacing.16` (5.5rem) or more for top-level section margins.
+- **Do** use asymmetric layouts (e.g., a narrow sidebar for controls and a wide, airy center for the editor).
+- **Do** use `on_surface_variant` for secondary labels to create a sophisticated gray-scale hierarchy.
+
+### Don't
+- **Don't** use 1px solid black or high-contrast borders.
+- **Don't** use generic "Blue #0000FF" for links. Use the refined `surface_tint` or `primary`.
+- **Don't** cram elements together. If you think there is enough space, add `spacing.2` more.
+- **Don't** use standard "Drop Shadows" from Figma defaults. Always use the Ambient Shadow recipe.

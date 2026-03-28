@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Project Alpha Editor - Architect Editor</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&amp;family=Manrope:wght@600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+          darkMode: "class",
+          theme: {
+            extend: {
+              colors: {
+                "tertiary-fixed-dim": "#ffb691",
+                "surface-container-lowest": "#ffffff",
+                "inverse-on-surface": "#eff1f3",
+                "tertiary": "#180500",
+                "primary-container": "#001a5e",
+                "on-surface": "#191c1e",
+                "on-background": "#191c1e",
+                "on-error-container": "#93000a",
+                "surface-variant": "#e0e3e5",
+                "on-error": "#ffffff",
+                "surface-tint": "#004dea",
+                "surface-container-highest": "#e0e3e5",
+                "tertiary-container": "#3d1500",
+                "surface-container-low": "#f2f4f6",
+                "primary-fixed-dim": "#b6c4ff",
+                "on-tertiary": "#ffffff",
+                "on-primary-container": "#5b80ff",
+                "inverse-primary": "#b6c4ff",
+                "on-secondary-container": "#3f5881",
+                "tertiary-fixed": "#ffdbcb",
+                "primary": "#00072a",
+                "on-tertiary-fixed-variant": "#6c391d",
+                "on-surface-variant": "#44474e",
+                "surface": "#f7f9fb",
+                "outline-variant": "#c4c6cf",
+                "on-secondary-fixed-variant": "#2d476f",
+                "secondary-fixed": "#d6e3ff",
+                "surface-container-high": "#e6e8ea",
+                "surface-container": "#eceef0",
+                "on-tertiary-fixed": "#341100",
+                "on-secondary-fixed": "#001b3d",
+                "on-primary-fixed-variant": "#0039b3",
+                "on-tertiary-container": "#b97958",
+                "secondary-fixed-dim": "#aec7f6",
+                "error-container": "#ffdad6",
+                "secondary-container": "#b6d0ff",
+                "primary-fixed": "#dce1ff",
+                "surface-dim": "#d8dadc",
+                "on-primary": "#ffffff",
+                "error": "#ba1a1a",
+                "secondary": "#465f88",
+                "outline": "#74777f",
+                "surface-bright": "#f7f9fb",
+                "on-primary-fixed": "#001551",
+                "on-secondary": "#ffffff",
+                "background": "#f7f9fb",
+                "inverse-surface": "#2d3133"
+              },
+              fontFamily: {
+                "headline": ["Manrope"],
+                "body": ["Inter"],
+                "label": ["Inter"]
+              },
+              borderRadius: {"DEFAULT": "0.125rem", "lg": "0.25rem", "xl": "0.5rem", "full": "0.75rem"},
+            },
+          },
+        }
+    </script>
+<style>
+        body { font-family: 'Inter', sans-serif; }
+        .font-headline { font-family: 'Manrope', sans-serif; }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+            vertical-align: middle;
+        }
+    </style>
+</head>
+<body class="bg-surface text-on-surface antialiased">
+<!-- Sidebar Navigation Shell -->
+<aside class="h-screen w-64 fixed left-0 top-0 border-r-0 bg-[#f2f4f6] dark:bg-slate-800/50 flex flex-col p-4 z-50">
+<div class="mb-8 px-2">
+<h1 class="text-lg font-bold tracking-tight text-[#002147] dark:text-white font-headline">Architect Editor</h1>
+<p class="text-xs text-on-surface-variant/70 tracking-wide font-medium">Premium AI Subtitles</p>
+</div>
+<nav class="flex-1 space-y-2">
+<!-- Active Navigation -->
+<a class="flex items-center gap-3 px-3 py-2.5 text-[#002147] dark:text-white font-semibold bg-white dark:bg-slate-800 rounded-xl shadow-sm transition-all duration-200" href="#">
+<span class="material-symbols-outlined" data-icon="dashboard">dashboard</span>
+<span class="text-sm">Dashboard</span>
+</a>
+<a class="flex items-center gap-3 px-3 py-2.5 text-slate-500 dark:text-slate-400 hover:text-[#002147] hover:bg-[#e0e3e5] dark:hover:bg-slate-700 rounded-xl transition-all duration-200" href="#">
+<span class="material-symbols-outlined" data-icon="folder_open">folder_open</span>
+<span class="text-sm">Projects</span>
+</a>
+<a class="flex items-center gap-3 px-3 py-2.5 text-slate-500 dark:text-slate-400 hover:text-[#002147] hover:bg-[#e0e3e5] dark:hover:bg-slate-700 rounded-xl transition-all duration-200" href="#">
+<span class="material-symbols-outlined" data-icon="settings">settings</span>
+<span class="text-sm">Settings</span>
+</a>
+<a class="flex items-center gap-3 px-3 py-2.5 text-slate-500 dark:text-slate-400 hover:text-[#002147] hover:bg-[#e0e3e5] dark:hover:bg-slate-700 rounded-xl transition-all duration-200" href="#">
+<span class="material-symbols-outlined" data-icon="person_headset">headset</span>
+<span class="text-sm">Account</span>
+</a>
+</nav>
+<div class="mt-auto space-y-4">
+<button class="w-full bg-primary-container text-on-primary-container font-semibold py-3 rounded-xl flex items-center justify-center gap-2 hover:opacity-90 transition-all scale-98 active:scale-95">
+<span class="material-symbols-outlined" data-icon="add">add</span>
+<span class="text-sm">New Project</span>
+</button>
+<div class="flex items-center gap-3 px-2 pt-4 border-t border-outline-variant/20">
+<img alt="User Profile Avatar" class="w-10 h-10 rounded-full bg-surface-container-highest object-cover" data-alt="Professional headshot of a creative director in a minimalist studio setting with soft natural side lighting" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBziLrywCoTKCDC_9UXIf1IIDMjj-RmH2fGD9OtE9mJR_bnje4tqtjandkMsJE4eM_3bpRVZVNqN22i7tBzccyPYE9MDUP-v-j3h5qQ0_Ecgh_uJ1MC8EdImAaHKS30bGciMDpsEoTawHVXWqlCCaTlq7FtSixkHDPsONHqLC2yO1bkrSN03eP2ENJaaqHKcgUkJNaIm30D7dviUat7ygbMBc-wZJ4sYGU2rO41x4gcndEqQB2RZbS05KWAIFism88ZKqg1vQg7Py5w"/>
+<div class="flex-1 min-w-0">
+<p class="text-sm font-semibold truncate">Alex Chen</p>
+<p class="text-[10px] uppercase tracking-widest text-on-surface-variant">Editor Pro</p>
+</div>
+</div>
+</div>
+</aside>
+<!-- Top Navigation Shell -->
+<header class="fixed top-0 right-0 left-64 h-16 bg-white/80 dark:bg-slate-950/80 backdrop-blur-xl border-b border-slate-100 dark:border-slate-800/50 shadow-[0_4px_20px_rgba(0,7,42,0.04)] flex justify-between items-center px-8 z-40">
+<div class="flex items-center gap-8">
+<div class="flex items-center gap-4 text-slate-400">
+<a class="text-sm font-medium tracking-wide text-slate-400 dark:text-slate-500 hover:text-slate-600 transition-all" href="#">Projects</a>
+<span class="material-symbols-outlined text-sm" data-icon="chevron_right">chevron_right</span>
+<a class="text-[#002147] dark:text-white border-b-2 border-[#002147] pb-1 text-sm font-medium tracking-wide" href="#">Project Alpha</a>
+</div>
+<div class="h-4 w-[1px] bg-slate-200"></div>
+<span class="text-xs font-label uppercase tracking-widest text-on-surface-variant/60">Last saved 2m ago</span>
+</div>
+<div class="flex items-center gap-6">
+<div class="flex items-center gap-3">
+<button class="p-2 text-slate-500 hover:text-[#002147] transition-all">
+<span class="material-symbols-outlined" data-icon="history">history</span>
+</button>
+<button class="p-2 text-slate-500 hover:text-[#002147] transition-all">
+<span class="material-symbols-outlined" data-icon="cloud_done">cloud_done</span>
+</button>
+</div>
+<div class="flex items-center gap-3">
+<button class="px-5 py-2 text-sm font-semibold text-secondary hover:bg-secondary-container/20 rounded-lg transition-all">Share</button>
+<button class="px-6 py-2 text-sm font-bold bg-primary text-white rounded-lg shadow-sm hover:opacity-90 active:scale-[0.99] transition-all">Export</button>
+</div>
+</div>
+</header>
+<!-- Main Content Canvas -->
+<main class="ml-64 pt-16 min-h-screen">
+<!-- Top Control Section -->
+<section class="p-8 bg-surface-container-low/50">
+<div class="max-w-6xl mx-auto flex flex-wrap items-center justify-between gap-6">
+<div class="flex items-center gap-4 flex-1 min-w-[300px]">
+<div class="flex-1">
+<label class="block text-[10px] font-label font-bold uppercase tracking-widest text-on-surface-variant mb-2">Source Language</label>
+<div class="relative">
+<select class="w-full bg-surface-container-lowest border-none rounded-xl px-4 py-3 text-sm font-medium shadow-sm focus:ring-2 focus:ring-primary/20 appearance-none">
+<option>English (US)</option>
+<option>French</option>
+<option>German</option>
+</select>
+<span class="material-symbols-outlined absolute right-4 top-1/2 -translate-y-1/2 text-on-surface-variant pointer-events-none" data-icon="expand_more">expand_more</span>
+</div>
+</div>
+<div class="pt-6">
+<span class="material-symbols-outlined text-on-surface-variant/40" data-icon="trending_flat">trending_flat</span>
+</div>
+<div class="flex-1">
+<label class="block text-[10px] font-label font-bold uppercase tracking-widest text-on-surface-variant mb-2">Target Language</label>
+<div class="relative">
+<select class="w-full bg-surface-container-lowest border-none rounded-xl px-4 py-3 text-sm font-medium shadow-sm focus:ring-2 focus:ring-primary/20 appearance-none">
+<option>Spanish (ES)</option>
+<option>Portuguese (BR)</option>
+<option>Japanese</option>
+</select>
+<span class="material-symbols-outlined absolute right-4 top-1/2 -translate-y-1/2 text-on-surface-variant pointer-events-none" data-icon="expand_more">expand_more</span>
+</div>
+</div>
+</div>
+<div class="flex items-center gap-4">
+<div>
+<label class="block text-[10px] font-label font-bold uppercase tracking-widest text-on-surface-variant mb-2">Translation Mode</label>
+<div class="relative">
+<select class="bg-surface-container-lowest border-none rounded-xl px-6 py-3 text-sm font-medium shadow-sm focus:ring-2 focus:ring-primary/20 appearance-none pr-12">
+<option>Precise Architecture</option>
+<option>Creative Adaptive</option>
+<option>Literal Mirror</option>
+</select>
+<span class="material-symbols-outlined absolute right-4 top-1/2 -translate-y-1/2 text-on-surface-variant pointer-events-none" data-icon="architecture">architecture</span>
+</div>
+</div>
+<div class="pt-6">
+<button class="bg-gradient-to-br from-primary to-primary-container text-white px-8 py-3 rounded-xl font-bold shadow-lg hover:shadow-primary/20 transition-all flex items-center gap-2">
+<span class="material-symbols-outlined text-sm" data-icon="auto_awesome" style="font-variation-settings: 'FILL' 1;">auto_awesome</span>
+                            Translate All
+                        </button>
+</div>
+</div>
+</div>
+</section>
+<!-- Editor Section: Subtitle Blocks -->
+<section class="px-8 pb-20 mt-8 max-w-6xl mx-auto">
+<div class="flex items-center justify-between mb-8">
+<h2 class="text-2xl font-headline font-extrabold text-primary">Subtitle Sequences</h2>
+<div class="flex items-center gap-2">
+<span class="text-xs font-medium text-on-surface-variant">42 Sequences Detected</span>
+<button class="p-2 text-on-surface-variant hover:text-primary transition-colors">
+<span class="material-symbols-outlined" data-icon="filter_list">filter_list</span>
+</button>
+</div>
+</div>
+<!-- Subtitle Block 1 (Active) -->
+<div class="relative mb-10 group">
+<div class="absolute -left-4 top-0 bottom-0 w-1 bg-primary rounded-full"></div>
+<div class="flex gap-8">
+<!-- Timestamp Sidebar -->
+<div class="w-24 pt-4 flex flex-col gap-1">
+<span class="text-[10px] font-label font-bold text-primary uppercase tracking-tighter">00:00:12.400</span>
+<div class="h-8 w-[1px] bg-outline-variant/30 ml-auto mr-4"></div>
+<span class="text-[10px] font-label font-bold text-on-surface-variant/40 uppercase tracking-tighter">00:00:15.850</span>
+</div>
+<!-- Content Card -->
+<div class="flex-1 grid grid-cols-2 gap-px bg-surface-container-highest rounded-xl overflow-hidden shadow-[0_12px_40px_rgba(0,7,42,0.08)]">
+<!-- Source -->
+<div class="bg-surface-container-low p-6">
+<label class="block text-[9px] font-label font-bold text-on-surface-variant/50 uppercase tracking-[0.15em] mb-4">Original (English)</label>
+<p class="text-sm leading-relaxed text-on-surface font-medium italic">"In the heart of the city, architecture speaks a silent language that defines our history."</p>
+</div>
+<!-- Target -->
+<div class="bg-surface-container-lowest p-6">
+<label class="block text-[9px] font-label font-bold text-on-primary-container uppercase tracking-[0.15em] mb-4">Translated (Spanish)</label>
+<textarea class="w-full bg-transparent border-none p-0 focus:ring-0 text-sm leading-relaxed text-primary font-semibold resize-none h-20" placeholder="Type translation...">"En el corazón de la ciudad, la arquitectura habla un lenguaje silencioso que define nuestra historia."</textarea>
+<div class="mt-4 flex justify-between items-center">
+<div class="flex gap-2">
+<span class="px-2 py-0.5 bg-secondary-container text-on-secondary-container text-[10px] font-bold rounded-lg">High Confidence</span>
+</div>
+<span class="text-[10px] text-on-surface-variant/40">92 chars</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Subtitle Block 2 -->
+<div class="relative mb-10 group opacity-70 hover:opacity-100 transition-opacity">
+<div class="flex gap-8">
+<!-- Timestamp Sidebar -->
+<div class="w-24 pt-4 flex flex-col gap-1">
+<span class="text-[10px] font-label font-bold text-on-surface-variant/40 uppercase tracking-tighter">00:00:15.850</span>
+<div class="h-8 w-[1px] bg-outline-variant/30 ml-auto mr-4"></div>
+<span class="text-[10px] font-label font-bold text-on-surface-variant/40 uppercase tracking-tighter">00:00:19.200</span>
+</div>
+<!-- Content Card -->
+<div class="flex-1 grid grid-cols-2 gap-px bg-surface-container-highest rounded-xl overflow-hidden shadow-sm hover:shadow-md transition-shadow">
+<!-- Source -->
+<div class="bg-surface-container-low p-6">
+<label class="block text-[9px] font-label font-bold text-on-surface-variant/50 uppercase tracking-[0.15em] mb-4">Original (English)</label>
+<p class="text-sm leading-relaxed text-on-surface font-medium italic">"Every stone tells a story of the people who built these foundations centuries ago."</p>
+</div>
+<!-- Target -->
+<div class="bg-surface-container-lowest p-6">
+<label class="block text-[9px] font-label font-bold text-on-surface-variant/50 uppercase tracking-[0.15em] mb-4">Translated (Spanish)</label>
+<textarea class="w-full bg-transparent border-none p-0 focus:ring-0 text-sm leading-relaxed text-on-surface-variant font-medium resize-none h-20" placeholder="Generating...">Cada piedra cuenta una historia de las personas que construyeron estos cimientos hace siglos.</textarea>
+<div class="mt-4 flex justify-between items-center">
+<div class="flex gap-2">
+<button class="p-1 text-on-surface-variant/40 hover:text-primary transition-colors">
+<span class="material-symbols-outlined text-sm" data-icon="refresh">refresh</span>
+</button>
+</div>
+<span class="text-[10px] text-on-surface-variant/40">88 chars</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Subtitle Block 3 -->
+<div class="relative mb-10 group opacity-70 hover:opacity-100 transition-opacity">
+<div class="flex gap-8">
+<!-- Timestamp Sidebar -->
+<div class="w-24 pt-4 flex flex-col gap-1">
+<span class="text-[10px] font-label font-bold text-on-surface-variant/40 uppercase tracking-tighter">00:00:19.200</span>
+<div class="h-8 w-[1px] bg-outline-variant/30 ml-auto mr-4"></div>
+<span class="text-[10px] font-label font-bold text-on-surface-variant/40 uppercase tracking-tighter">00:00:24.500</span>
+</div>
+<!-- Content Card -->
+<div class="flex-1 grid grid-cols-2 gap-px bg-surface-container-highest rounded-xl overflow-hidden shadow-sm">
+<!-- Source -->
+<div class="bg-surface-container-low p-6">
+<label class="block text-[9px] font-label font-bold text-on-surface-variant/50 uppercase tracking-[0.15em] mb-4">Original (English)</label>
+<p class="text-sm leading-relaxed text-on-surface font-medium italic">"We must preserve these artifacts as a blueprint for our future architectural endeavors."</p>
+</div>
+<!-- Target -->
+<div class="bg-surface-container-lowest p-6">
+<label class="block text-[9px] font-label font-bold text-on-surface-variant/50 uppercase tracking-[0.15em] mb-4">Translated (Spanish)</label>
+<textarea class="w-full bg-transparent border-none p-0 focus:ring-0 text-sm leading-relaxed text-on-surface-variant font-medium resize-none h-20" placeholder="Type translation...">Debemos preservar estos artefactos como un plano para nuestros futuros proyectos arquitectónicos.</textarea>
+<div class="mt-4 flex justify-between items-center">
+<div class="flex gap-2">
+<span class="px-2 py-0.5 bg-error-container text-on-error-container text-[10px] font-bold rounded-lg">Exceeds Limit</span>
+</div>
+<span class="text-[10px] text-error font-bold">104 chars</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Empty State / Add New -->
+<button class="w-full py-12 border-2 border-dashed border-outline-variant/40 rounded-xl flex flex-col items-center justify-center gap-3 text-on-surface-variant hover:border-primary/40 hover:text-primary transition-all">
+<span class="material-symbols-outlined text-3xl" data-icon="add_circle">add_circle</span>
+<span class="text-sm font-semibold">Add New Subtitle Sequence</span>
+</button>
+</section>
+</main>
+<!-- Floating Preview Widget -->
+<div class="fixed bottom-8 right-8 w-80 aspect-video bg-primary-container rounded-xl shadow-2xl overflow-hidden border-4 border-white group">
+<div class="absolute inset-0 bg-cover bg-center" data-alt="Cinematic low angle shot of modern glass skyscrapers reaching towards a clear blue sky, architectural and grand mood" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuDb1rdyz-6ULevwbDlofdL0xCQXVmLkMPKwOX0Gw7uokFM3p8IW9kVzIpqyZfmUfjo0Tkxf4QrmsrlZi09kidWq57ffxy154drNppQjlznZWfy4365jeAEcaJ6FNGJk16vQyGbBok1bKTvArlPHJGMEh2kT0EbAX_s_PW-dm7AhGGdKadskoNftc2qLor5XHaTphh9DpuSj0Ln0KA5th9HEZ4X7vjlszDB1jIcJGln5EljemV0_dJuf8pk8wz8RnRKeGSZ23nZyaaRj')">
+<div class="absolute inset-0 bg-black/20"></div>
+</div>
+<div class="absolute inset-x-0 bottom-4 text-center px-4">
+<p class="text-[10px] text-white font-body leading-snug drop-shadow-lg">
+<span class="bg-black/60 px-2 py-0.5 rounded">En el corazón de la ciudad, la arquitectura habla...</span>
+</p>
+</div>
+<div class="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity bg-black/40 cursor-pointer">
+<span class="material-symbols-outlined text-white text-4xl" data-icon="play_arrow" style="font-variation-settings: 'FILL' 1;">play_arrow</span>
+</div>
+</div>
+</body></html>

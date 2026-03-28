@@ -6,3 +6,5 @@ coverage/
 *.log
 .env*
 !.env.example
+# Windows Zone.Identifier files (alternate data streams)
+*:Zone.Identifier
