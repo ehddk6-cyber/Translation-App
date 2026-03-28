@@ -1,27 +1,27 @@
-@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;700&family=Noto+Sans+KR:wght@400;500;700&family=Noto+Sans+JP:wght@400;500;700&family=JetBrains+Mono:wght@400;500&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Inter:wght@400;500;600;700&family=Noto+Sans+KR:wght@400;500;700&family=Noto+Sans+JP:wght@400;500;700&family=JetBrains+Mono:wght@400;500&display=swap');
 @import "tailwindcss";
 
 @theme {
   --font-sans: "Noto Sans KR", "Noto Sans JP", ui-sans-serif, system-ui, sans-serif;
-  --font-headline: "Space Grotesk", "Noto Sans KR", ui-sans-serif, system-ui, sans-serif;
+  --font-headline: "Manrope", "Noto Sans KR", ui-sans-serif, system-ui, sans-serif;
   --font-mono: "JetBrains Mono", ui-monospace, SFMono-Regular, monospace;
   
-  --color-surface: #f5f1e8;
-  --color-surface-container-low: #ece5d8;
-  --color-surface-container-high: #dfd5c3;
-  --color-surface-container-highest: #d2c6b0;
-  --color-surface-container-lowest: #fffdf7;
-  
-  --color-primary: #1b2b59;
-  --color-primary-container: #314482;
-  --color-on-primary: #ffffff;
-  --color-on-primary-container: #d9e4ff;
+  --color-surface: #f7f8fc;
+  --color-surface-container-low: #eef1f6;
+  --color-surface-container-high: #dfe5ef;
+  --color-surface-container-highest: #cfd7e6;
+  --color-surface-container-lowest: #ffffff;
 
-  --color-accent: #de6248;
-  --color-accent-soft: #f5ded8;
+  --color-primary: #08122b;
+  --color-primary-container: #14264d;
+  --color-on-primary: #ffffff;
+  --color-on-primary-container: #dbe5ff;
+
+  --color-accent: #4f77e5;
+  --color-accent-soft: #e3ebff;
   
-  --color-secondary-container: #d9c28e;
-  --color-on-secondary-container: #695128;
+  --color-secondary-container: #d8e2ff;
+  --color-on-secondary-container: #35528a;
   
   --color-on-surface: #1f2430;
   --color-on-surface-variant: #5c6270;
@@ -44,9 +44,10 @@
   body {
     @apply bg-surface text-on-surface font-sans antialiased;
     background-image:
-      linear-gradient(180deg, rgba(255, 253, 247, 0.88), rgba(245, 241, 232, 0.96)),
-      radial-gradient(circle at top left, rgba(222, 98, 72, 0.08), transparent 30%),
-      radial-gradient(circle at top right, rgba(27, 43, 89, 0.08), transparent 28%);
+      linear-gradient(180deg, rgba(255, 255, 255, 0.86), rgba(247, 248, 252, 0.98)),
+      radial-gradient(circle at top left, rgba(79, 119, 229, 0.08), transparent 32%),
+      radial-gradient(circle at top right, rgba(8, 18, 43, 0.07), transparent 30%),
+      radial-gradient(circle at bottom left, rgba(20, 38, 77, 0.05), transparent 30%);
     min-height: 100vh;
   }
 }

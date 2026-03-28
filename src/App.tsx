@@ -161,7 +161,7 @@ export default function App() {
     });
 
     try {
-      const result = await translateSubtitles(file.blocks, options, (p) => {
+      const result = await translateSubtitles(file.blocks, { ...options, assetName: file.name }, (p) => {
         setFiles(prev => {
           const next = [...prev];
           next[index] = { ...next[index], progress: p };
@@ -291,20 +291,20 @@ export default function App() {
         <div className="absolute bottom-[-8rem] left-1/3 h-96 w-96 rounded-full bg-[radial-gradient(circle,_rgba(209,181,111,0.14),_transparent_74%)]" />
       </div>
 
-      <header className="sticky top-0 z-50 border-b border-outline-variant/30 bg-surface/85 backdrop-blur-xl">
+      <header className="sticky top-0 z-50 bg-surface/75 backdrop-blur-2xl">
         <div className="mx-auto flex max-w-[1480px] items-center justify-between px-6 py-5 lg:px-10">
           <div className="flex items-center gap-4">
-            <div className="flex h-11 w-11 items-center justify-center rounded-2xl bg-primary text-on-primary shadow-[0_14px_32px_rgba(27,43,89,0.2)]">
+            <div className="flex h-11 w-11 items-center justify-center rounded-2xl bg-primary text-on-primary shadow-[0_18px_40px_rgba(8,18,43,0.16)]">
               <Languages className="h-5 w-5" />
             </div>
             <div>
               <div className="text-[0.65rem] font-bold uppercase tracking-[0.28em] text-accent">Translation-App</div>
-              <div className="font-headline text-2xl font-bold tracking-tight text-primary">Japanese Subtitle Control Room</div>
+              <div className="font-headline text-2xl font-bold tracking-tight text-primary">Architect Editor / Subtitle System</div>
             </div>
           </div>
           <button
             onClick={loadSample}
-            className="inline-flex items-center gap-2 rounded-full border border-primary/12 bg-surface-container-low px-4 py-2 text-[0.7rem] font-bold uppercase tracking-[0.24em] text-primary transition hover:border-primary/30 hover:bg-surface-container-high"
+            className="inline-flex items-center gap-2 rounded-full bg-surface-container-low px-4 py-2 text-[0.7rem] font-bold uppercase tracking-[0.24em] text-primary transition hover:bg-surface-container-high"
           >
             <Info className="h-4 w-4" />
             Load Sample
@@ -313,24 +313,24 @@ export default function App() {
       </header>
 
       <main className="mx-auto flex max-w-[1480px] flex-col gap-10 px-6 py-8 lg:px-10 lg:py-10">
-        <section className="grid gap-4 lg:grid-cols-[1.2fr_0.8fr_0.7fr]">
-          <div className="rounded-[2rem] border border-outline-variant/35 bg-surface-container-lowest p-7 shadow-[0_24px_80px_rgba(27,43,89,0.08)] lg:p-8">
+        <section className="grid gap-4 lg:grid-cols-[1.25fr_0.78fr_0.72fr]">
+          <div className="rounded-[2rem] bg-surface-container-lowest p-7 shadow-[0_24px_80px_rgba(8,18,43,0.08)] ring-1 ring-black/5 lg:p-8">
             <div className="flex flex-wrap items-center gap-3">
               <span className="rounded-full bg-accent-soft px-4 py-2 text-[0.65rem] font-bold uppercase tracking-[0.24em] text-accent">Session overview</span>
-              <span className="rounded-full border border-outline-variant/40 px-4 py-2 text-[0.65rem] font-bold uppercase tracking-[0.22em] text-on-surface-variant">
+              <span className="rounded-full bg-surface-container-low px-4 py-2 text-[0.65rem] font-bold uppercase tracking-[0.22em] text-on-surface-variant">
                 {sourceLanguageLabel} to {targetLanguageLabel}
               </span>
             </div>
             <div className="mt-6 flex flex-col gap-5 lg:flex-row lg:items-end lg:justify-between">
               <div className="max-w-xl">
-                <h1 className="font-headline text-[2.35rem] font-bold leading-[1.02] tracking-tight text-primary lg:text-[3.25rem]">
-                  Japanese subtitle workspace
+                <h1 className="font-headline text-[2.45rem] font-bold leading-[1.02] tracking-tight text-primary lg:text-[3.45rem]">
+                  Japanese subtitle architecture
                 </h1>
-                <p className="mt-3 text-sm leading-7 text-on-surface-variant">
-                  업로드, 번역, 검수, 내려받기 흐름을 한 화면 안에서 관리하는 작업 표면입니다. 현재 큐 상태와 번역 프로필이 상단에 고정되어 있어 진행 상황을 즉시 판단할 수 있습니다.
+                <p className="mt-3 max-w-2xl text-sm leading-7 text-on-surface-variant">
+                  업로드, 번역, 검수, 내려받기 흐름을 한 화면 안에서 관리하는 작업 표면입니다. Stitch 레퍼런스처럼 여백과 톤의 차이로 층을 만들고, 현재 큐 상태와 번역 프로필은 상단에서 바로 읽히도록 배치했습니다.
                 </p>
               </div>
-              <div className="rounded-[1.5rem] border border-outline-variant/30 bg-surface px-5 py-4 shadow-[inset_0_1px_0_rgba(255,255,255,0.7)]">
+              <div className="rounded-[1.5rem] bg-surface px-5 py-4 shadow-[inset_0_1px_0_rgba(255,255,255,0.7)] ring-1 ring-black/5">
                 <div className="text-[0.62rem] font-bold uppercase tracking-[0.22em] text-on-surface-variant">Lane status</div>
                 <div className="mt-2 flex items-center gap-3">
                   <span className={cn("h-2.5 w-2.5 rounded-full", translatingCount > 0 ? "bg-accent" : "bg-emerald-500")} />
@@ -342,7 +342,7 @@ export default function App() {
           </div>
 
           <div className="grid gap-4">
-            <div className="rounded-[1.75rem] border border-outline-variant/35 bg-surface-container-lowest p-6 shadow-[0_20px_60px_rgba(27,43,89,0.06)]">
+            <div className="rounded-[1.75rem] bg-surface-container-lowest p-6 shadow-[0_20px_60px_rgba(8,18,43,0.06)] ring-1 ring-black/5">
               <div className="text-[0.65rem] font-bold uppercase tracking-[0.24em] text-accent">Queue</div>
               <div className="mt-5 grid grid-cols-3 gap-3">
                 <div>
@@ -362,7 +362,7 @@ export default function App() {
                 {pendingCount} pending, {translatingCount} translating
               </div>
             </div>
-            <div className="rounded-[1.75rem] border border-outline-variant/35 bg-surface-container-lowest p-6 shadow-[0_20px_60px_rgba(27,43,89,0.06)]">
+            <div className="rounded-[1.75rem] bg-surface-container-lowest p-6 shadow-[0_20px_60px_rgba(8,18,43,0.06)] ring-1 ring-black/5">
               <div className="text-[0.65rem] font-bold uppercase tracking-[0.24em] text-accent">Profile</div>
               <div className="mt-4 flex items-center gap-3">
                 <div className="rounded-full bg-accent-soft px-3 py-1 text-[0.68rem] font-bold uppercase tracking-[0.18em] text-accent">{currentMode?.name || options.mode}</div>
@@ -375,7 +375,7 @@ export default function App() {
             </div>
           </div>
 
-          <div className="rounded-[1.75rem] border border-outline-variant/35 bg-primary p-6 text-on-primary shadow-[0_24px_60px_rgba(27,43,89,0.18)]">
+          <div className="rounded-[1.75rem] bg-primary p-6 text-on-primary shadow-[0_24px_60px_rgba(8,18,43,0.18)]">
             <div className="text-[0.65rem] font-bold uppercase tracking-[0.24em] text-on-primary/70">Operator notes</div>
             <div className="mt-5 space-y-4 text-sm leading-6 text-on-primary/78">
               <p>업로드와 결과 비교가 한 시선 안에 들어오도록 구성을 유지했습니다.</p>
@@ -386,15 +386,30 @@ export default function App() {
         </section>
 
         <section className="grid grid-cols-1 gap-8 lg:grid-cols-12">
-          <div className="lg:col-span-4 rounded-[2rem] border border-outline-variant/35 bg-surface-container-lowest p-6 shadow-[0_24px_70px_rgba(27,43,89,0.07)] lg:p-7">
+          <div className="lg:col-span-4 rounded-[2rem] bg-surface-container-lowest p-6 shadow-[0_24px_70px_rgba(8,18,43,0.07)] ring-1 ring-black/5 lg:p-7">
             <div className="mb-6">
-              <span className="mb-3 block text-[0.65rem] font-bold uppercase tracking-[0.24em] text-accent">Workspace setup</span>
-              <h2 className="font-headline text-3xl font-bold tracking-tight text-primary">Upload, tune, run</h2>
-              <p className="mt-2 text-sm leading-6 text-on-surface-variant">작업 대상과 번역 정책을 먼저 결정하고, 그다음 결과 화면으로 자연스럽게 이어지도록 구성했습니다.</p>
+              <span className="mb-3 block text-[0.65rem] font-bold uppercase tracking-[0.24em] text-accent">Configuration hub</span>
+              <h2 className="font-headline text-3xl font-bold tracking-tight text-primary">Translation settings hub</h2>
+              <p className="mt-2 text-sm leading-6 text-on-surface-variant">작업 대상과 번역 정책을 먼저 결정하고, 그다음 결과 화면으로 자연스럽게 이어지도록 구성했습니다. 여백과 톤으로 층을 나누는 편집기식 구성으로 정리했습니다.</p>
+            </div>
+
+            <div className="mb-6 grid grid-cols-3 gap-3">
+              <div className="rounded-2xl bg-surface p-3 ring-1 ring-black/5">
+                <div className="text-[0.62rem] font-bold uppercase tracking-[0.18em] text-on-surface-variant">Source</div>
+                <div className="mt-1 text-sm font-semibold text-primary">{sourceLanguageLabel}</div>
+              </div>
+              <div className="rounded-2xl bg-surface p-3 ring-1 ring-black/5">
+                <div className="text-[0.62rem] font-bold uppercase tracking-[0.18em] text-on-surface-variant">Target</div>
+                <div className="mt-1 text-sm font-semibold text-primary">{targetLanguageLabel}</div>
+              </div>
+              <div className="rounded-2xl bg-surface p-3 ring-1 ring-black/5">
+                <div className="text-[0.62rem] font-bold uppercase tracking-[0.18em] text-on-surface-variant">Mode</div>
+                <div className="mt-1 text-sm font-semibold text-primary">{currentMode?.name || options.mode}</div>
+              </div>
             </div>
 
           {/* Upload Area */}
-          <section className="rounded-[1.5rem] bg-surface p-6 shadow-[inset_0_1px_0_rgba(255,255,255,0.75)]">
+          <section className="rounded-[1.5rem] bg-surface p-6 shadow-[inset_0_1px_0_rgba(255,255,255,0.75)] ring-1 ring-black/5">
             <h2 className="text-[0.6875rem] font-bold tracking-[0.2em] uppercase text-on-surface-variant mb-4 flex items-center gap-2">
               <Upload className="w-4 h-4" /> 1. Upload
             </h2>
@@ -403,7 +418,7 @@ export default function App() {
               {...getRootProps()} 
               className={cn(
                 "mb-4 rounded-[1.25rem] border-2 border-dashed p-6 text-center transition-all",
-                isDragActive ? "border-accent bg-accent-soft/60" : "border-outline-variant/40 bg-surface-container-lowest hover:border-accent/50 hover:bg-accent-soft/35"
+                isDragActive ? "border-accent bg-accent-soft/60" : "border-outline-variant/35 bg-surface-container-lowest hover:border-accent/50 hover:bg-accent-soft/35"
               )}
             >
               <input {...getInputProps()} />
@@ -455,7 +470,7 @@ export default function App() {
           </section>
 
           {/* Options Area */}
-          <section className="mt-6 space-y-6 rounded-[1.5rem] bg-surface p-6 shadow-[inset_0_1px_0_rgba(255,255,255,0.75)]">
+          <section className="mt-6 space-y-6 rounded-[1.5rem] bg-surface p-6 shadow-[inset_0_1px_0_rgba(255,255,255,0.75)] ring-1 ring-black/5">
             <h2 className="text-[0.6875rem] font-bold tracking-[0.2em] uppercase text-on-surface-variant mb-2 flex items-center gap-2">
               <Settings2 className="w-4 h-4" /> 2. Options
             </h2>
@@ -466,7 +481,7 @@ export default function App() {
                 <select 
                   value={options.sourceLang}
                   onChange={(e) => setOptions(prev => ({ ...prev, sourceLang: e.target.value }))}
-                    className="w-full rounded-xl border border-outline-variant/30 bg-surface-container-low px-4 py-3 text-sm outline-none transition-all focus:ring-1 focus:ring-accent/30"
+                    className="w-full rounded-xl bg-surface-container-low px-4 py-3 text-sm outline-none transition-all ring-1 ring-black/5 focus:ring-2 focus:ring-accent/25"
                 >
                   {LANGUAGES.map(l => <option key={l.code} value={l.code}>{l.name}</option>)}
                 </select>
@@ -476,7 +491,7 @@ export default function App() {
                 <select 
                   value={options.targetLang}
                   onChange={(e) => setOptions(prev => ({ ...prev, targetLang: e.target.value }))}
-                    className="w-full rounded-xl border border-outline-variant/30 bg-surface-container-low px-4 py-3 text-sm outline-none transition-all focus:ring-1 focus:ring-accent/30"
+                    className="w-full rounded-xl bg-surface-container-low px-4 py-3 text-sm outline-none transition-all ring-1 ring-black/5 focus:ring-2 focus:ring-accent/25"
                 >
                   {LANGUAGES.filter(l => l.code !== 'auto').map(l => <option key={l.code} value={l.code}>{l.name}</option>)}
                 </select>
@@ -509,7 +524,7 @@ export default function App() {
               <textarea 
                 value={options.customPrompt}
                 onChange={(e) => setOptions(prev => ({ ...prev, customPrompt: e.target.value }))}
-                className="h-32 w-full resize-none rounded-[1.25rem] border border-outline-variant/30 bg-surface-container-low px-4 py-3 text-xs leading-6 text-on-surface outline-none transition-all focus:ring-1 focus:ring-accent/30"
+                className="h-32 w-full resize-none rounded-[1.25rem] bg-surface-container-low px-4 py-3 text-xs leading-6 text-on-surface outline-none transition-all ring-1 ring-black/5 focus:ring-2 focus:ring-accent/25"
               />
             </div>
 
@@ -519,7 +534,7 @@ export default function App() {
                   type="checkbox" 
                   checked={options.keepSpeakerNames}
                   onChange={(e) => setOptions(prev => ({ ...prev, keepSpeakerNames: e.target.checked }))}
-                  className="h-4 w-4 rounded border-outline-variant/50 text-accent focus:ring-accent"
+                  className="h-4 w-4 rounded text-accent focus:ring-accent"
                 />
                 <span className="text-xs font-medium text-on-surface-variant group-hover:text-on-surface transition-colors">Keep Speaker Names (e.g. [Name]:)</span>
               </label>
@@ -528,7 +543,7 @@ export default function App() {
                   type="checkbox" 
                   checked={options.translateSoundEffects}
                   onChange={(e) => setOptions(prev => ({ ...prev, translateSoundEffects: e.target.checked }))}
-                  className="h-4 w-4 rounded border-outline-variant/50 text-accent focus:ring-accent"
+                  className="h-4 w-4 rounded text-accent focus:ring-accent"
                 />
                 <span className="text-xs font-medium text-on-surface-variant group-hover:text-on-surface transition-colors">Translate Sound Effects (e.g. (Music))</span>
               </label>
@@ -542,7 +557,7 @@ export default function App() {
                   "flex-1 py-4 rounded-lg font-bold text-xs font-headline uppercase tracking-widest transition-all flex items-center justify-center gap-2",
                   files.length === 0 || isTranslatingAll
                     ? "cursor-not-allowed bg-surface-container-high text-on-surface-variant"
-                    : "bg-gradient-to-r from-primary via-primary-container to-accent text-on-primary shadow-[0_18px_40px_rgba(27,43,89,0.22)] hover:shadow-[0_22px_48px_rgba(27,43,89,0.28)] active:scale-[0.98]"
+                    : "bg-gradient-to-r from-primary via-primary-container to-accent text-on-primary shadow-[0_18px_40px_rgba(8,18,43,0.22)] hover:shadow-[0_22px_48px_rgba(8,18,43,0.28)] active:scale-[0.98]"
                 )}
               >
                 {isTranslatingAll ? (
@@ -569,19 +584,19 @@ export default function App() {
 
         {/* Right Panel: Results */}
         <div className="lg:col-span-8 flex min-h-[840px] flex-col">
-          <section className="flex flex-1 flex-col overflow-hidden rounded-[2rem] border border-outline-variant/35 bg-surface-container-lowest shadow-[0_28px_80px_rgba(27,43,89,0.08)]">
+          <section className="flex flex-1 flex-col overflow-hidden rounded-[2rem] bg-[#09132e] text-white shadow-[0_28px_80px_rgba(8,18,43,0.18)] ring-1 ring-white/10">
             {/* Tabs & Actions */}
-            <div className="flex items-center justify-between border-b border-surface-container-low px-8 py-6">
+            <div className="flex items-center justify-between px-8 py-6">
               <div>
-                <div className="text-[0.65rem] font-bold uppercase tracking-[0.24em] text-accent">Live output</div>
-                <div className="mt-2 text-lg font-semibold text-primary">{currentFile ? currentFile.name : "Translation preview"}</div>
+                <div className="text-[0.65rem] font-bold uppercase tracking-[0.24em] text-[#8aa1df]">Live output</div>
+                <div className="mt-2 text-lg font-semibold text-white">{currentFile ? currentFile.name : "Translation preview"}</div>
               </div>
-              <div className="flex rounded-xl bg-surface-container-low p-1">
+              <div className="flex rounded-xl bg-white/5 p-1 ring-1 ring-white/10">
                 <button 
                   onClick={() => setActiveTab('source')}
                   className={cn(
                     "flex items-center gap-2 rounded-lg px-4 py-2 text-[10px] font-bold uppercase tracking-widest transition-all",
-                    activeTab === 'source' ? "bg-surface-container-lowest text-primary shadow-sm" : "text-on-surface-variant hover:text-on-surface"
+                    activeTab === 'source' ? "bg-white text-primary shadow-sm" : "text-white/70 hover:text-white"
                   )}
                 >
                   <Eye className="w-3.5 h-3.5" /> Source
@@ -590,7 +605,7 @@ export default function App() {
                   onClick={() => setActiveTab('translated')}
                   className={cn(
                     "flex items-center gap-2 rounded-lg px-4 py-2 text-[10px] font-bold uppercase tracking-widest transition-all",
-                    activeTab === 'translated' ? "bg-surface-container-lowest text-primary shadow-sm" : "text-on-surface-variant hover:text-on-surface"
+                    activeTab === 'translated' ? "bg-white text-primary shadow-sm" : "text-white/70 hover:text-white"
                   )}
                 >
                   <CheckCircle2 className="w-3.5 h-3.5" /> Translated
@@ -599,7 +614,7 @@ export default function App() {
                   onClick={() => setActiveTab('compare')}
                   className={cn(
                     "flex items-center gap-2 rounded-lg px-4 py-2 text-[10px] font-bold uppercase tracking-widest transition-all",
-                    activeTab === 'compare' ? "bg-surface-container-lowest text-primary shadow-sm" : "text-on-surface-variant hover:text-on-surface"
+                    activeTab === 'compare' ? "bg-white text-primary shadow-sm" : "text-white/70 hover:text-white"
                   )}
                 >
                   <Columns className="w-3.5 h-3.5" /> Compare
@@ -610,30 +625,30 @@ export default function App() {
                 <button 
                   onClick={() => selectedFileIndex !== null && handleCopy(selectedFileIndex)}
                   disabled={!currentFile || currentFile.translatedBlocks.length === 0}
-                  className="rounded-lg p-2 text-on-surface-variant transition-all hover:bg-accent-soft hover:text-accent disabled:opacity-30"
+                  className="rounded-lg p-2 text-white/70 transition-all hover:bg-white/10 hover:text-white disabled:opacity-30"
                   title="Copy to clipboard"
                 >
                   <Copy className="w-4 h-4" />
                 </button>
-                <div className="w-px h-4 bg-surface-container-high mx-1" />
+                <div className="w-px h-4 bg-white/10 mx-1" />
                 <button 
                   onClick={() => selectedFileIndex !== null && handleDownload(selectedFileIndex, 'srt')}
                   disabled={!currentFile || currentFile.translatedBlocks.length === 0}
-                  className="flex items-center gap-2 rounded-lg bg-surface-container-low px-4 py-2 text-[10px] font-bold uppercase tracking-widest text-primary transition-all hover:bg-surface-container-high disabled:opacity-30"
+                  className="flex items-center gap-2 rounded-lg bg-white/10 px-4 py-2 text-[10px] font-bold uppercase tracking-widest text-white transition-all hover:bg-white/20 disabled:opacity-30"
                 >
                   <FileDown className="w-3.5 h-3.5" /> .SRT
                 </button>
                 <button 
                   onClick={() => selectedFileIndex !== null && handleDownload(selectedFileIndex, 'txt')}
                   disabled={!currentFile || currentFile.translatedBlocks.length === 0}
-                  className="flex items-center gap-2 rounded-lg bg-surface-container-low px-4 py-2 text-[10px] font-bold uppercase tracking-widest text-primary transition-all hover:bg-surface-container-high disabled:opacity-30"
+                  className="flex items-center gap-2 rounded-lg bg-white/10 px-4 py-2 text-[10px] font-bold uppercase tracking-widest text-white transition-all hover:bg-white/20 disabled:opacity-30"
                 >
                   <FileText className="w-3.5 h-3.5" /> .TXT
                 </button>
                 {files.some(f => f.status === 'completed') && (
                   <button 
                     onClick={handleDownloadAll}
-                    className="flex items-center gap-2 rounded-lg bg-primary px-4 py-2 text-[10px] font-bold uppercase tracking-widest text-on-primary shadow-sm transition-all hover:bg-primary-container"
+                    className="flex items-center gap-2 rounded-lg bg-accent px-4 py-2 text-[10px] font-bold uppercase tracking-widest text-white shadow-sm transition-all hover:bg-[#6c8df0]"
                     title="Download all completed as ZIP"
                   >
                     <Download className="w-3.5 h-3.5" /> All (ZIP)
@@ -643,7 +658,7 @@ export default function App() {
             </div>
 
             {/* Content View */}
-            <div className="relative flex-1 overflow-hidden bg-surface-container-lowest">
+            <div className="relative flex-1 overflow-hidden bg-[#09132e]">
               <AnimatePresence mode="wait">
                 {!currentFile && (
                   <motion.div 
@@ -652,11 +667,11 @@ export default function App() {
                     animate={{ opacity: 1 }}
                     className="flex h-full flex-col items-center justify-center p-12 text-center"
                   >
-                    <div className="mb-6 flex h-24 w-24 items-center justify-center rounded-[2rem] bg-accent-soft">
-                      <FileText className="h-10 w-10 text-accent" />
+                    <div className="mb-6 flex h-24 w-24 items-center justify-center rounded-[2rem] bg-white/10 ring-1 ring-white/10">
+                      <FileText className="h-10 w-10 text-[#8aa1df]" />
                     </div>
-                    <h3 className="mb-4 font-headline text-3xl font-bold text-primary">No Subtitles Loaded</h3>
-                    <p className="max-w-md text-sm leading-relaxed text-on-surface-variant">샘플을 불러오거나 실제 일본어 자막을 업로드하면, 여기서 원문과 번역문을 빠르게 비교할 수 있습니다.</p>
+                    <h3 className="mb-4 font-headline text-3xl font-bold text-white">No Subtitles Loaded</h3>
+                    <p className="max-w-md text-sm leading-relaxed text-white/70">샘플을 불러오거나 실제 일본어 자막을 업로드하면, 여기서 원문과 번역문을 빠르게 비교할 수 있습니다.</p>
                   </motion.div>
                 )}
 
@@ -668,14 +683,14 @@ export default function App() {
                     className="flex h-full flex-col items-center justify-center p-12 text-center"
                   >
                     <div className="relative mb-8">
-                      <div className="w-24 h-24 border-4 border-surface-container-high rounded-full" />
-                      <div className="w-24 h-24 border-4 border-primary border-t-transparent rounded-full animate-spin absolute top-0" />
+                      <div className="w-24 h-24 rounded-full bg-white/10 ring-1 ring-white/10" />
+                      <div className="w-24 h-24 border-4 border-[#8aa1df] border-t-transparent rounded-full animate-spin absolute top-0" />
                       <div className="absolute inset-0 flex items-center justify-center">
-                        <span className="text-lg font-bold text-primary">{currentFile.progress}%</span>
+                        <span className="text-lg font-bold text-white">{currentFile.progress}%</span>
                       </div>
                     </div>
-                    <h3 className="mb-4 font-headline text-3xl font-bold text-primary">Translating in Parallel...</h3>
-                    <p className="text-sm text-on-surface-variant">"{currentFile.name}" 을(를) 일본어 자막 워크플로로 처리 중입니다.</p>
+                    <h3 className="mb-4 font-headline text-3xl font-bold text-white">Translating in Parallel...</h3>
+                    <p className="text-sm text-white/70">"{currentFile.name}" 을(를) 일본어 자막 워크플로로 처리 중입니다.</p>
                   </motion.div>
                 )}
 
@@ -689,11 +704,11 @@ export default function App() {
                     <div className="w-16 h-16 bg-error-container rounded-full flex items-center justify-center mb-6">
                       <AlertCircle className="w-8 h-8 text-error" />
                     </div>
-                    <h3 className="text-error font-headline font-bold text-2xl mb-4">Translation Error</h3>
-                    <p className="text-on-surface-variant text-sm max-w-md mb-8">{currentFile.error}</p>
+                    <h3 className="text-white font-headline font-bold text-2xl mb-4">Translation Error</h3>
+                    <p className="text-white/70 text-sm max-w-md mb-8">{currentFile.error}</p>
                     <button 
                       onClick={() => selectedFileIndex !== null && translateFile(selectedFileIndex)}
-                      className="rounded-lg bg-primary px-8 py-3 text-xs font-bold uppercase tracking-widest text-on-primary transition-all hover:bg-primary-container"
+                      className="rounded-lg bg-white px-8 py-3 text-xs font-bold uppercase tracking-widest text-primary transition-all hover:bg-slate-100"
                     >
                       Retry
                     </button>
@@ -705,29 +720,36 @@ export default function App() {
                     key="content"
                     initial={{ opacity: 0 }}
                     animate={{ opacity: 1 }}
-                    className="h-full overflow-y-auto p-8 scrollbar-thin scrollbar-thumb-surface-container-high"
+                    className="h-full overflow-y-auto p-8 scrollbar-thin scrollbar-thumb-white/20"
                   >
                     {activeTab === 'compare' ? (
                       <div className="space-y-6">
                         {currentFile.blocks.map((block, i) => (
-                          <div key={block.id} className="group relative rounded-[1.5rem] border border-outline-variant/25 bg-surface p-5 shadow-[0_12px_28px_rgba(27,43,89,0.04)]">
-                            <div className="mb-4 flex items-center justify-between">
-                              <div className="text-[0.65rem] font-bold uppercase tracking-[0.2em] text-accent">Block {block.index || i + 1}</div>
-                              <div className="text-[10px] font-mono text-on-surface-variant">{block.timestamp || "No timestamp"}</div>
+                          <div key={block.id} className="group overflow-hidden rounded-[1.5rem] bg-white/10 shadow-[0_12px_28px_rgba(8,18,43,0.16)] ring-1 ring-white/10">
+                            <div className="flex items-center justify-between px-5 pt-5">
+                              <div className="text-[0.65rem] font-bold uppercase tracking-[0.2em] text-[#8aa1df]">Block {block.index || i + 1}</div>
+                              <div className="text-[10px] font-mono text-white/50">{block.timestamp || "No timestamp"}</div>
                             </div>
-                            <div className="grid gap-4 lg:grid-cols-2">
-                              <div className="rounded-[1.25rem] bg-surface-container-low p-5 text-sm leading-relaxed text-on-surface-variant">
-                                {block.originalText}
+                            <div className="mt-4 grid gap-px bg-white/10 lg:grid-cols-2">
+                              <div className="bg-white/5 p-5">
+                                <div className="mb-3 text-[0.62rem] font-bold uppercase tracking-[0.18em] text-white/50">Source</div>
+                                <div className="text-sm leading-relaxed text-white/72">
+                                  {block.originalText}
+                                </div>
                               </div>
-                              <div className="rounded-[1.25rem] bg-accent-soft p-5 text-sm font-medium leading-relaxed text-primary ring-1 ring-accent/10">
-                                {currentFile.translatedBlocks[i]?.text || "..."}
+                              <div className="relative bg-[#dbe5ff] p-5 text-primary">
+                                <div className="absolute left-0 top-0 bottom-0 w-1 bg-[#8aa1df]" />
+                                <div className="mb-3 text-[0.62rem] font-bold uppercase tracking-[0.18em] text-[#3b5896]">Translation</div>
+                                <div className="text-sm font-medium leading-relaxed">
+                                  {currentFile.translatedBlocks[i]?.text || "..."}
+                                </div>
                               </div>
                             </div>
                           </div>
                         ))}
                       </div>
                     ) : (
-                      <div className="min-h-full rounded-[1.5rem] bg-surface p-8 font-mono text-sm leading-relaxed text-on-surface shadow-[inset_0_1px_0_rgba(255,255,255,0.8)]">
+                      <div className="min-h-full rounded-[1.5rem] bg-white/10 p-8 font-mono text-sm leading-relaxed text-white/80 shadow-[inset_0_1px_0_rgba(255,255,255,0.08)] ring-1 ring-white/10">
                         <pre className="whitespace-pre-wrap">
                           {activeTab === 'source' 
                             ? reassembleSubtitles(currentFile.blocks, currentFile.ext as any || 'srt')
@@ -744,7 +766,7 @@ export default function App() {
         </div>
         </section>
 
-        <footer className="flex flex-col gap-4 border-t border-outline-variant/25 px-2 pb-6 pt-2 text-sm text-on-surface-variant lg:flex-row lg:items-center lg:justify-between">
+        <footer className="flex flex-col gap-4 px-2 pb-6 pt-2 text-sm text-on-surface-variant lg:flex-row lg:items-center lg:justify-between">
           <div className="font-headline text-lg font-bold tracking-tight text-primary">Translation Control Room</div>
           <div className="flex flex-wrap gap-x-6 gap-y-2">
             <span>{files.length} files loaded</span>
